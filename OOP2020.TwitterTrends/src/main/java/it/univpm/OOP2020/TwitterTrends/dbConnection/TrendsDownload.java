@@ -1,5 +1,4 @@
 package it.univpm.OOP2020.TwitterTrends.dbConnection;
-/*package dbConnection;
 
 import java.net.URL;
 import java.net.URLConnection;
@@ -30,4 +29,3 @@ public class TrendsDownload {
 	}
 
 }
-/*/
