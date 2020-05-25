@@ -1,7 +1,5 @@
 package it.univpm.OOP2020.TwitterTrends.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * @author Andrea Camilloni
  *
@@ -9,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TrendModel {
 
+	
 	private String name;
 	private PlaceType placeType;
 	private String url;
@@ -109,6 +108,10 @@ public class TrendModel {
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
-	
+	@Override
+	public String toString() {
+		return "TrendModel [name=" + name + ", placeType=" + placeType + ", url=" + url + ", parentid=" + parentid
+				+ ", country=" + country + ", woeid=" + woeid + ", countryCode=" + countryCode + "]";
+	}
 	
 }
