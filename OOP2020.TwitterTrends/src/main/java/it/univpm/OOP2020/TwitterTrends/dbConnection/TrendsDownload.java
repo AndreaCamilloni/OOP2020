@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -18,7 +19,10 @@ import it.univpm.OOP2020.TwitterTrends.model.TrendModel;
 public class TrendsDownload {
 	// private String url;
 	private static List<TrendModel> trendsAvailable;
+	private static List<TrendModel> trendsClosest;
 	private static List<Metadata> metadata=new JSONArray() ;
+	//private static TrendModel trends ;
+	
 
 	public TrendsDownload() {
 
@@ -44,6 +48,7 @@ public class TrendsDownload {
 		try {
 			// URLConnection urlConnection = new
 			// URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat=43.508321&long=13.376535").openConnection();
+			@SuppressWarnings("resource")
 			String jsonString = new Scanner(
 					new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/available.json")
 							.openStream(),
@@ -52,7 +57,6 @@ public class TrendsDownload {
 			JSONArray jsonList = (JSONArray) parser.parse(jsonString);
 			// System.out.print(jsonOB);
 
-			ObjectMapper mapper = new ObjectMapper();
 			trendsAvailable = new ObjectMapper().readValue(jsonList.toString(), new TypeReference<List<TrendModel>>() {
 			});
 
@@ -76,4 +80,28 @@ public class TrendsDownload {
 		return metadata;
 	}
 
+	public static List<TrendModel> getTrendsClosest(double latTrend,double longTrend) {
+		JSONParser parser = new JSONParser();
+		
+		try {
+			// URLConnection urlConnection = new
+			// URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat=43.508321&long=13.376535").openConnection();
+			@SuppressWarnings("resource")
+			String jsonString = new Scanner(
+					new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat="+
+			latTrend + "&long="+longTrend).openStream(),"UTF-8").useDelimiter("\\A").next();
+
+			JSONArray jsonTrends = (JSONArray) parser.parse(jsonString);
+			// System.out.print(jsonOB);
+
+			trendsClosest =  new ObjectMapper().readValue(jsonTrends.toString(), new TypeReference<List<TrendModel>>() {
+			});
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trendsClosest;
+
+	}
 }
