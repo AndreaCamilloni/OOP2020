@@ -5,7 +5,7 @@ package it.univpm.OOP2020.TwitterTrends.model;
  *
  */
 
-public class TrendModel {
+public class Location {
 
 	
 	private String name;
@@ -19,7 +19,7 @@ public class TrendModel {
 	/**
 	 * Costruttore
 	 */
-	public TrendModel() {
+	public Location() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

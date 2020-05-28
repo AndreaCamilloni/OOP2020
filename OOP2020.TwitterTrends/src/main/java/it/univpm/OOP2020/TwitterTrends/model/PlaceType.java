@@ -1,10 +1,19 @@
 package it.univpm.OOP2020.TwitterTrends.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * @author Andrea Camilloni
+ *
+ */
 
 public class PlaceType {
 
-	private Integer code;
-	private String name;
+
+	@JsonProperty("code")
+	private Integer placeTypeCode;
+	@JsonProperty("name")
+	private String placeTypeName;
 	/**
 	 * 
 	 */
@@ -12,33 +21,42 @@ public class PlaceType {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	/**
-	 * @return the code
+	 * @return the placeTypeCode
 	 */
-	public Integer getCode() {
-		return code;
+	@JsonProperty("code")
+	public Integer getPlaceTypeCode() {
+		return placeTypeCode;
 	}
+
 	/**
-	 * @param code the code to set
+	 * @param placeTypeCode the placeTypeCode to set
 	 */
-	public void setCode(Integer code) {
-		this.code = code;
+	@JsonProperty("code")
+	public void setPlaceTypeCode(Integer placeTypeCode) {
+		this.placeTypeCode = placeTypeCode;
 	}
+
 	/**
-	 * @return the name
+	 * @return the placeTypeName
 	 */
-	public String getName() {
-		return name;
+	@JsonProperty("name")
+	public String getPlaceTypeName() {
+		return placeTypeName;
 	}
+
 	/**
-	 * @param name the name to set
+	 * @param placeTypeName the placeTypeName to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	@JsonProperty("name")
+	public void setPlaceTypeName(String placeTypeName) {
+		this.placeTypeName = placeTypeName;
 	}
+
 	@Override
 	public String toString() {
-		return "PlaceType [code=" + code + ", name=" + name + "]";
+		return "PlaceType [code=" + placeTypeCode + ", name=" + placeTypeName + "]";
 	}
 
 	

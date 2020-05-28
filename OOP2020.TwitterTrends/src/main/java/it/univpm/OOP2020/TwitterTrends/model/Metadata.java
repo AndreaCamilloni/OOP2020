@@ -1,5 +1,10 @@
 package it.univpm.OOP2020.TwitterTrends.model;
 
+/**
+ * @author Andrea Camilloni
+ *
+ */
+
 public class Metadata {
 	
 	private String alias;
