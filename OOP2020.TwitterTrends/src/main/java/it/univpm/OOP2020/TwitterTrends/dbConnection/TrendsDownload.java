@@ -30,12 +30,14 @@ public class TrendsDownload {
 	// private String url;
 	private static List<Location> trendsAvailable;
 	private static List<Location> trendsClosest;
+	private static JSONParser parser = new JSONParser();
+	String urlResponse;
 	//private static List<Coordinata> listCoordinate;
 	private static List<Metadata> metadata = new JSONArray();
-	static JSONParser parser = new JSONParser();
+	
 	// private static TrendModel trends ;
-	 String urlResponse;
-	 private static List<JSONObject> listaJson;
+	 
+	 //private static List<JSONObject> listaJson;
 	public TrendsDownload() {
 
 	}
@@ -121,29 +123,41 @@ public class TrendsDownload {
 			e.printStackTrace();
 		}
 
-		
-
 		return listCoordinate;
 
 	}
-
+	
 	public List<Location> getTrendsClosest() {
-
+		//JSONArray array=new JSONArray();
 		String url;
 		JSONObject obj;
 		String lista="[";
 		try {
+			//getCoord è un metodo che ritorna delle coordinate passate in input tramite file di testo
 			for (Coordinata coordinata : TrendsDownload.getCoord()) {
 				url="https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat="
 						+ coordinata.getLat().toString() + "&long=" + coordinata.getLon().toString();
 				@SuppressWarnings("resource")
 				String urlResponse = new Scanner(new URL(url).openStream(),
 						"UTF-8").useDelimiter("\\A").next();
+				//Get /trendsClosest restituisce un JSONArray fra [ ] però lo tratto come oggetto
+				//dato che effettivamente ciò che restituisce è un oggetto(una singola Location)
+				//Per far ciò non considero primo e ultimo carattere di urlResponse
+				obj = (JSONObject) parser.parse(urlResponse.substring(1,(urlResponse.length()-1))); 
+				//PROBLEMA
+				//inizialmente invece di creare una semplice stringa contenente i JSONObject(vedi SOLUZIONE)
+				//per creare un JSONArray provavo a fare:
+				//array.add(obj); => qui tornava ogni volta l'errore nullPointerException
+				//Stesso errore mi tornava se provavo ad inserire gli oggetti in un lista di tipo List<JSONObject>
 				
-				obj = (JSONObject) parser.parse(urlResponse.substring(1,(urlResponse.length()-1))); //Non leggo 
+				//SOLUZIONE
+				//Qui creo una stringa la quale conterrà le Location relative agli input(coordinate) 
+				//passati tramite file di testo, che andrò ad inserire in un JSONarray
 				lista+=obj+",";				
+				
 			}
 			lista=lista.substring(0,lista.length()-1)+"]";
+			//Creo il JSONArray che vado poi a passare nella lista che andrò a visualizzare con GET /Data
 			JSONArray jsonTrends = (JSONArray) parser.parse(lista);
 			trendsClosest=new ObjectMapper().readValue(jsonTrends.toString(), new TypeReference<List<Location>>() {});
 					

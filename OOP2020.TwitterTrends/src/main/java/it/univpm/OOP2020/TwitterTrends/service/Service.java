@@ -17,7 +17,7 @@ public interface Service {
 	 * Description of the method DataList.
 	 */
 	public abstract List<Location> DataList();
-	public abstract List<Location> SpecificDataList(double latData, double longData);
+	public abstract List<Location> DataList(String latData, String longData);
 	public abstract List<Location> DataList(String filterToRecognize)throws FilterException;
 
 

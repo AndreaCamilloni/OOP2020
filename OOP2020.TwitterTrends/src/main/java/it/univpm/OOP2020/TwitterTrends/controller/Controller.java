@@ -1,18 +1,14 @@
 package it.univpm.OOP2020.TwitterTrends.controller;
 
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import it.univpm.OOP2020.TwitterTrends.dbConnection.TrendsDownload;
-import it.univpm.OOP2020.TwitterTrends.model.Location;
-import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 import it.univpm.OOP2020.TwitterTrends.service.Service;
 import it.univpm.OOP2020.TwitterTrends.service.ServiceImplementation;
 
@@ -20,23 +16,28 @@ import it.univpm.OOP2020.TwitterTrends.service.ServiceImplementation;
 
 @RestController
 public class Controller {
-	private Service db=new ServiceImplementation();
+	@Autowired
+	private Service data=new ServiceImplementation();
 	
+
 	@GetMapping("/Metadata")
-	public List<Metadata> getMeta(){
-		return db.MetadataList(); 
+	public ResponseEntity<Object> getMeta(){
+		return new ResponseEntity<>(data.MetadataList(),HttpStatus.OK); 
 	}
-	@GetMapping("/GetData")
-	public List<Location> getData(){
-		return db.DataList(); 
+	
+	
+	@GetMapping("/Data")
+	public ResponseEntity<Object> getData(){
+		return new ResponseEntity<>(data.DataList(),HttpStatus.OK); 
 	}
 
-	/*@GetMapping("/GetData")
-	public List<Location> getData(@RequestParam(required = false,name = "lat", defaultValue = "13") double latTrend,
-			@RequestParam(required = false,name = "long",defaultValue = "43")  double longTrend){
-		return db.DataList(latTrend,longTrend); 
+	@GetMapping("/DataFromInput")
+	public  ResponseEntity<Object> getData(@RequestParam(required = true,name = "lat") String latTrend,
+			@RequestParam(required = true,name = "long")  String longTrend){
+		return new ResponseEntity<>(data.DataList(latTrend,longTrend),HttpStatus.OK); 
+
 	}
-*/
+
 	
 	//Metodi aggiuntivi utili per lo studio generale dei TwitterTrends
 	/**
@@ -44,11 +45,11 @@ public class Controller {
 	 * @return list of Twitter trends available for location
 	 */
 	@GetMapping("/TrendsAvailable")
-	public List<Location> TrendsAvailable(){
+	public  ResponseEntity<Object> TrendsAvailable(){
 		//utilizzo tale metodo per scaricare una lista completa delle location 
 		//per cui twitter dispone di trend per fini prossimi allo studio che vado 
 		//a fare poi con TrendClosest(obiettivo del progetto)
-		return new TrendsDownload().getTrendsAvailable(); 
+		return new ResponseEntity<>(data.TrendsAvailable(),HttpStatus.OK); 
 	}
 	/*
 	@GetMapping("/TrendsAvailableWithCoordinates")

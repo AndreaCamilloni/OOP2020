@@ -40,7 +40,7 @@ private TrendsDownload db=new TrendsDownload();
 		return db.getTrendsAvailable();
 	}
 	@Override
-	public List<Location> SpecificDataList(double latData, double longData) {
+	public List<Location> DataList(String latData, String longData) {
 		// TODO Auto-generated method stub
 		return null;
 	}
