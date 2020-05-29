@@ -5,6 +5,7 @@ package it.univpm.OOP2020.TwitterTrends.service;
 
 import java.util.List;
 
+import it.univpm.OOP2020.TwitterTrends.Util.supportList;
 import it.univpm.OOP2020.TwitterTrends.dbConnection.TrendsDownload;
 import it.univpm.OOP2020.TwitterTrends.exception.FilterException;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
@@ -44,6 +45,11 @@ private TrendsDownload db=new TrendsDownload();
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Override
+	public List<supportList> SortedTrendsAvailable() {
+		// TODO Auto-generated method stub
+		return db.getProva();
+	}
+	
 
 }

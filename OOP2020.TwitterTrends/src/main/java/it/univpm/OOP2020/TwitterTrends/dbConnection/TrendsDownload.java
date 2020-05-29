@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -18,10 +20,12 @@ import org.json.simple.JSONValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.univpm.OOP2020.TwitterTrends.Util.supportList;
 import it.univpm.OOP2020.TwitterTrends.exception.IncorrectFileLocation;
 import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
+
 
 
 public class TrendsDownload {
@@ -137,30 +141,45 @@ public class TrendsDownload {
 
 		return metadata;
 	}
-	public List<Location> getProva(){
-		Iterator<Location> it = getTrendsAvailable().iterator();
+	public List<supportList> getProva(){
+		getTrendsAvailable();
+		Iterator<Location> it = trendsAvailable.iterator();
+		List<supportList> CountryAvailable = new ArrayList<supportList>();
+		
+		int i = 0;
+		
 		while (it.hasNext()) {
-		  Location loc = it.next();
-		  if (loc.getPlaceType().getPlaceTypeName().equals("Town")) {
-		    it.remove();
-		  }
+			Location tmpLoc = it.next();
+			if (tmpLoc.getPlaceType().getPlaceTypeName().equals("Country")) {
+				//System.out.println(tmpLoc.getCountryCode());
+				CountryAvailable.add(new supportList(tmpLoc.getCountryCode(),i));
+			}
 		}
-		return trendsAvailable;
+		//System.out.println(CountryAvailable);
+		for (supportList tmpCountry : CountryAvailable) {
+			i = 0;
+			for (Location trend : trendsAvailable) {
+				//System.out.println(trend.getCountryCode());
+				if (trend.getCountryCode()!=null)
+					if (trend.getCountryCode().equals(tmpCountry.getCountryCode()))
+					{	i++; tmpCountry.setCount(i);}
+					
+			}
+			//System.out.println("Per: " + tmpCountry.getCountryCode() + " si hanno: " + tmpCountry.getCount() + "trend");
+
+		}
+		Collections.sort(CountryAvailable,new Comparator<supportList>() {
+
+			public int compare(supportList o1, supportList o2) {
+				// TODO Auto-generated method stub
+				return o1.getCount() > o2.getCount() ? -1 : (o1.getCount() < o2.getCount() ) ? 1 : 0;
+				 
+			}
+		});
+		//System.out.println(CountryAvailable);
+		return CountryAvailable;
 		
 		
 	}
-	/*
-	 * public List<Location> getTrendsAvailableWithCoordinates() { // TODO
-	 * Auto-generated method stub for (Location loc :
-	 * TrendsDownload.getTrendsAvailable()) { String jsonString; try { jsonString =
-	 * new Scanner( new
-	 * URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/geo/"+loc.
-	 * getName()).openStream(),"UTF-8").useDelimiter("\\A").next(); JSONObject
-	 * jsonCoord = (JSONObject) parser.parse(jsonString); jsonCoord } catch
-	 * (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); }
-	 * 
-	 * }
-	 * 
-	 * return null; }
-	 */
+	
 }
