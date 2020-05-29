@@ -6,17 +6,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,51 +23,25 @@ import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 
+
 public class TrendsDownload {
 	// private String url;
 	private static List<Location> trendsAvailable;
 	private static List<Location> trendsClosest;
-	private static JSONParser parser = new JSONParser();
-	String urlResponse;
-	//private static List<Coordinata> listCoordinate;
-	private static List<Metadata> metadata = new JSONArray();
+	//private static JSONParser parser = new JSONParser();
+	private String url;
+	private static List<Metadata> metadata;
 	
-	// private static TrendModel trends ;
-	 
-	 //private static List<JSONObject> listaJson;
 	public TrendsDownload() {
 
 	}
 
-	/*
-	 * public String[] TrendsCloset() { JSONParser parser = new JSONParser(); try {
-	 * // URLConnection urlConnection = new // URL(
-	 * "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat=43.508321&long=13.376535"
-	 * ).openConnection(); String jsonString = new Scanner(new URL(
-	 * "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat=43.508321&long=13.376535")
-	 * .openStream(), "UTF-8").useDelimiter("\\A").next();
-	 * 
-	 * JSONArray jsonOB = (JSONArray) parser.parse(jsonString);
-	 * System.out.print(jsonOB); } catch (Exception e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); }
-	 * 
-	 * }
-	 */
-
+	
 	public List<Location> getTrendsAvailable() {
-		// JSONParser parser = new JSONParser();
+		url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/available.json";
 		try {
-			// URLConnection urlConnection = new
-			// URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat=43.508321&long=13.376535").openConnection();
-			@SuppressWarnings("resource")
-			String jsonString = new Scanner(
-					new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/available.json")
-							.openStream(),
-					"UTF-8").useDelimiter("\\A").next();
-
-			JSONArray jsonList = (JSONArray) parser.parse(jsonString);
-			// System.out.print(jsonOB);
-
+			JSONArray jsonList = (JSONArray) JSONValue.parseWithException(new urlConnection(url).getJSON());
+		
 			trendsAvailable = new ObjectMapper().readValue(jsonList.toString(), new TypeReference<List<Location>>() {
 			});
 
@@ -92,8 +63,6 @@ public class TrendsDownload {
 			reader = new BufferedReader(
 					new FileReader(new File("location.txt")));
 			
-			//List<Coordinata> empList = new ArrayList<>();
-
 			while ((line = reader.readLine()) != null) {
 				Coordinata coord = new Coordinata();
 				scanner = new Scanner(line);
@@ -101,25 +70,23 @@ public class TrendsDownload {
 				while (scanner.hasNext()) {
 					String data = scanner.next();
 					if (index == 0)
-						coord.setLat(data);
+						coord.setLat(Double.valueOf(data));
 					else if (index == 1)
-						coord.setLon(data);
+						coord.setLon(Double.valueOf(data));
 					else
 						System.out.println("invalid data::" + data);
 					index++;
 				}
 				index = 0;
 				listCoordinate.add(coord);
-				//System.out.println("entra");
 			}
 
-			// close reader
 			reader.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("File location.txt non trovato!");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("");
 			e.printStackTrace();
 		}
 
@@ -128,37 +95,22 @@ public class TrendsDownload {
 	}
 	
 	public List<Location> getTrendsClosest() {
-		//JSONArray array=new JSONArray();
-		String url;
+		String urlResponse;
 		JSONObject obj;
-		String lista="[";
+		//JSONValue obj; 
+		String listaAppoggio="[";
 		try {
-			//getCoord è un metodo che ritorna delle coordinate passate in input tramite file di testo
 			for (Coordinata coordinata : TrendsDownload.getCoord()) {
 				url="https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat="
-						+ coordinata.getLat().toString() + "&long=" + coordinata.getLon().toString();
-				@SuppressWarnings("resource")
-				String urlResponse = new Scanner(new URL(url).openStream(),
-						"UTF-8").useDelimiter("\\A").next();
-				//Get /trendsClosest restituisce un JSONArray fra [ ] però lo tratto come oggetto
-				//dato che effettivamente ciò che restituisce è un oggetto(una singola Location)
-				//Per far ciò non considero primo e ultimo carattere di urlResponse
-				obj = (JSONObject) parser.parse(urlResponse.substring(1,(urlResponse.length()-1))); 
-				//PROBLEMA
-				//inizialmente invece di creare una semplice stringa contenente i JSONObject(vedi SOLUZIONE)
-				//per creare un JSONArray provavo a fare:
-				//array.add(obj); => qui tornava ogni volta l'errore nullPointerException
-				//Stesso errore mi tornava se provavo ad inserire gli oggetti in un lista di tipo List<JSONObject>
-				
-				//SOLUZIONE
-				//Qui creo una stringa la quale conterrà le Location relative agli input(coordinate) 
-				//passati tramite file di testo, che andrò ad inserire in un JSONarray
-				lista+=obj+",";				
+						+ coordinata.getLat() + "&long=" + coordinata.getLon();
+				urlResponse = new urlConnection(url).getJSON();
+				obj = (JSONObject) JSONValue.parseWithException(urlResponse.substring(1,(urlResponse.length()-1))); 
+				listaAppoggio+=obj+",";				
 				
 			}
-			lista=lista.substring(0,lista.length()-1)+"]";
+			listaAppoggio=listaAppoggio.substring(0,listaAppoggio.length()-1)+"]";
 			//Creo il JSONArray che vado poi a passare nella lista che andrò a visualizzare con GET /Data
-			JSONArray jsonTrends = (JSONArray) parser.parse(lista);
+			JSONArray jsonTrends = (JSONArray) JSONValue.parseWithException(listaAppoggio);
 			trendsClosest=new ObjectMapper().readValue(jsonTrends.toString(), new TypeReference<List<Location>>() {});
 					
 		} catch (Exception e) {
@@ -169,7 +121,10 @@ public class TrendsDownload {
 
 	}
 
+	
+	@SuppressWarnings("unchecked")
 	public List<Metadata> getMetadata() {
+		metadata = new JSONArray();
 		metadata.add(new Metadata("name", "name", "String"));
 		metadata.add(new Metadata("PlaceType", "placeType", "Object"));
 		metadata.add(new Metadata("placeTypeCode", "code", "Integer"));
@@ -181,6 +136,18 @@ public class TrendsDownload {
 		metadata.add(new Metadata("countryCode", "countryCode", "String"));
 
 		return metadata;
+	}
+	public List<Location> getProva(){
+		Iterator<Location> it = getTrendsAvailable().iterator();
+		while (it.hasNext()) {
+		  Location loc = it.next();
+		  if (loc.getPlaceType().getPlaceTypeName().equals("Town")) {
+		    it.remove();
+		  }
+		}
+		return trendsAvailable;
+		
+		
 	}
 	/*
 	 * public List<Location> getTrendsAvailableWithCoordinates() { // TODO

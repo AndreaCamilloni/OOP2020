@@ -59,8 +59,4 @@ public class PlaceType {
 		return "PlaceType [code=" + placeTypeCode + ", name=" + placeTypeName + "]";
 	}
 
-	
-	
-
-	
 }

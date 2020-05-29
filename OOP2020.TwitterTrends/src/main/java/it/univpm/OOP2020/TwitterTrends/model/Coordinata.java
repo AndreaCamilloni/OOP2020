@@ -8,8 +8,8 @@ package it.univpm.OOP2020.TwitterTrends.model;
  *
  */
 public class Coordinata {
-	private String lat;
-	private String lon;
+	private double lat;
+	private double lon;
 	
 	public Coordinata() {
 		
@@ -19,7 +19,7 @@ public class Coordinata {
 	/**
 	 * @return the lat
 	 */
-	public String getLat() {
+	public double getLat() {
 		return lat;
 	}
 
@@ -27,7 +27,7 @@ public class Coordinata {
 	/**
 	 * @param lat the lat to set
 	 */
-	public void setLat(String lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
 
@@ -35,7 +35,7 @@ public class Coordinata {
 	/**
 	 * @return the lon
 	 */
-	public String getLon() {
+	public double getLon() {
 		return lon;
 	}
 
@@ -43,13 +43,9 @@ public class Coordinata {
 	/**
 	 * @param lon the lon to set
 	 */
-	public void setLon(String lon) {
+	public void setLon(double lon) {
 		this.lon = lon;
 	}
-
-
-	
-
 
 	@Override
 	public String toString() {
