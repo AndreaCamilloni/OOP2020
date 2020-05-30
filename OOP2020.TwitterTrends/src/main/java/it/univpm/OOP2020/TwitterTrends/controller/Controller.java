@@ -14,23 +14,41 @@ import it.univpm.OOP2020.TwitterTrends.service.ServiceImplementation;
 
 
 
+/**
+ * @author Andrea Camilloni
+ *
+ */
 @RestController
 public class Controller {
+	/**
+	 * 
+	 */
 	@Autowired
 	private Service data=new ServiceImplementation();
 	
 
+	/**
+	 * @return
+	 */
 	@GetMapping("/Metadata")
 	public ResponseEntity<Object> getMeta(){
 		return new ResponseEntity<>(data.MetadataList(),HttpStatus.OK); 
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	@GetMapping("/Data")
 	public ResponseEntity<Object> getData(){
 		return new ResponseEntity<>(data.DataList(),HttpStatus.OK); 
 	}
 
+	/**
+	 * @param latTrend
+	 * @param longTrend
+	 * @return
+	 */
 	@GetMapping("/DataFromInput")
 	public  ResponseEntity<Object> getData(@RequestParam(required = true,name = "lat") String latTrend,
 			@RequestParam(required = true,name = "long")  String longTrend){

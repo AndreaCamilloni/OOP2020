@@ -26,8 +26,10 @@ import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 
-
-
+/**
+ * @author Andrea Camilloni
+ *
+ */
 public class TrendsDownload {
 	// private String url;
 	private static List<Location> trendsAvailable;

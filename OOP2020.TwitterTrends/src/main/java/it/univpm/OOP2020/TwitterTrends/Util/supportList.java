@@ -1,5 +1,10 @@
 package it.univpm.OOP2020.TwitterTrends.Util;
 
+/**
+ * @author Andrea Camilloni
+ *
+ */
+
 public class supportList {
 	private String countryCode;
 	private int count;

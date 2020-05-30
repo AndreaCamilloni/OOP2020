@@ -5,6 +5,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+/**
+ * @author Andrea Camilloni
+ *
+ */
+
 public class urlConnection {
 	private String url;
 

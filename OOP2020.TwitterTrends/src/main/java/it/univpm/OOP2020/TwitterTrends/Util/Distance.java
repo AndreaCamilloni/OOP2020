@@ -1,5 +1,10 @@
 package it.univpm.OOP2020.TwitterTrends.Util;
 
+/**
+ * @author Andrea Camilloni
+ *
+ */
+
 public class Distance {
 
 	public double distanza(double latA, double lonA, double latB, double lonB) {

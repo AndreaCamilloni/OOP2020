@@ -1,6 +1,11 @@
 package it.univpm.OOP2020.TwitterTrends.exception;
 
 
+/**
+ * @author Andrea Camilloni
+ *
+ */
+
 
 public class FilterException extends Exception{
 	public FilterException(String e) {
