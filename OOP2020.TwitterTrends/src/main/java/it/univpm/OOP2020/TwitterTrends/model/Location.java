@@ -110,7 +110,7 @@ public class Location {
 	}
 	@Override
 	public String toString() {
-		return "TrendModel [name=" + name + ", placeType=" + placeType + ", url=" + url + ", parentid=" + parentid
+		return "Location [name=" + name + ", placeType=" + placeType + ", url=" + url + ", parentid=" + parentid
 				+ ", country=" + country + ", woeid=" + woeid + ", countryCode=" + countryCode + "]";
 	}
 	

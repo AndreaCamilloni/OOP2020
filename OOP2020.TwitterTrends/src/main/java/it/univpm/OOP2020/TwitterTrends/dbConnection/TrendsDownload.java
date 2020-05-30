@@ -20,11 +20,12 @@ import org.json.simple.JSONValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.univpm.OOP2020.TwitterTrends.Util.supportList;
+import it.univpm.OOP2020.TwitterTrends.Util.urlConnection;
 import it.univpm.OOP2020.TwitterTrends.exception.IncorrectFileLocation;
 import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
+import it.univpm.OOP2020.TwitterTrends.model.Stats;
 
 /**
  * @author Andrea Camilloni
@@ -143,10 +144,10 @@ public class TrendsDownload {
 
 		return metadata;
 	}
-	public List<supportList> getProva(){
+	public List<Stats> getProva(){
 		getTrendsAvailable();
 		Iterator<Location> it = trendsAvailable.iterator();
-		List<supportList> CountryAvailable = new ArrayList<supportList>();
+		List<Stats> CountryAvailable = new ArrayList<Stats>();
 		
 		int i = 0;
 		
@@ -154,25 +155,27 @@ public class TrendsDownload {
 			Location tmpLoc = it.next();
 			if (tmpLoc.getPlaceType().getPlaceTypeName().equals("Country")) {
 				//System.out.println(tmpLoc.getCountryCode());
-				CountryAvailable.add(new supportList(tmpLoc.getCountryCode(),i));
+				Stats stats=new Stats(tmpLoc,i);
+				//stats.setCount(i);
+				CountryAvailable.add(stats);
 			}
 		}
 		//System.out.println(CountryAvailable);
-		for (supportList tmpCountry : CountryAvailable) {
+		for (Stats tmpCountry : CountryAvailable) {
 			i = 0;
 			for (Location trend : trendsAvailable) {
 				//System.out.println(trend.getCountryCode());
 				if (trend.getCountryCode()!=null)
-					if (trend.getCountryCode().equals(tmpCountry.getCountryCode()))
+					if (trend.getCountryCode().equals(tmpCountry.getLoc().getCountryCode()))
 					{	i++; tmpCountry.setCount(i);}
 					
 			}
-			//System.out.println("Per: " + tmpCountry.getCountryCode() + " si hanno: " + tmpCountry.getCount() + "trend");
+			System.out.println("Per: " + tmpCountry.getLoc().getCountryCode() + " si hanno: " + tmpCountry.getCount() + "trend");
 
 		}
-		Collections.sort(CountryAvailable,new Comparator<supportList>() {
+		Collections.sort(CountryAvailable,new Comparator<Stats>() {
 
-			public int compare(supportList o1, supportList o2) {
+			public int compare(Stats o1, Stats o2) {
 				// TODO Auto-generated method stub
 				return o1.getCount() > o2.getCount() ? -1 : (o1.getCount() < o2.getCount() ) ? 1 : 0;
 				 

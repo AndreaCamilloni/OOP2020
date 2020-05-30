@@ -1,4 +1,4 @@
-package it.univpm.OOP2020.TwitterTrends.dbConnection;
+package it.univpm.OOP2020.TwitterTrends.Util;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

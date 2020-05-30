@@ -75,15 +75,8 @@ public class Controller {
 	 */
 	@GetMapping("/SortedTrendsAvailable")
 	public  ResponseEntity<Object> SortedTrendsAvailable(){
-		//utilizzo tale metodo per scaricare una lista completa delle location 
-		//per cui twitter dispone di trend per fini prossimi allo studio che vado 
-		//a fare poi con TrendClosest(obiettivo del progetto)
+
 		return new ResponseEntity<>(data.SortedTrendsAvailable(),HttpStatus.OK); 
 	}
-	/*
-	@GetMapping("/TrendsAvailableWithCoordinates")
-	public List<Location> TrendsAvailableWithCoordinates(){
-
-		return new TrendsDownload().getTrendsAvailableWithCoordinates(); 
-	}*/
+	
 }
