@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  */
 
-public class urlConnection {
+public class urlConnection  {
 	private String url;
 
 	/**

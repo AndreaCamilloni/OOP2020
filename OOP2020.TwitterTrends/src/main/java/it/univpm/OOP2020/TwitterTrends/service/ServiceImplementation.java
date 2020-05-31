@@ -6,7 +6,6 @@ package it.univpm.OOP2020.TwitterTrends.service;
 import java.util.List;
 
 import it.univpm.OOP2020.TwitterTrends.dbConnection.TrendsDownload;
-import it.univpm.OOP2020.TwitterTrends.exception.FilterException;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 import it.univpm.OOP2020.TwitterTrends.model.Stats;
@@ -32,10 +31,7 @@ private TrendsDownload db=new TrendsDownload();
 	}
 
 	@Override
-	public List<Location> DataList(String filterToRecognize) throws FilterException {
-		return null;
-	}
-	@Override
+	
 	public List<Location> TrendsAvailable() {
 		
 		return db.getTrendsAvailable();
@@ -46,9 +42,9 @@ private TrendsDownload db=new TrendsDownload();
 		return null;
 	}
 	@Override
-	public List<Stats> SortedTrendsAvailable() {
+	public List<Stats> Stats() {
 		// TODO Auto-generated method stub
-		return db.getProva();
+		return db.getStats();
 	}
 	
 

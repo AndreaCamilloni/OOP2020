@@ -20,6 +20,7 @@ import org.json.simple.JSONValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.univpm.OOP2020.TwitterTrends.Util.getCoordinates;
 import it.univpm.OOP2020.TwitterTrends.Util.urlConnection;
 import it.univpm.OOP2020.TwitterTrends.exception.IncorrectFileLocation;
 import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
@@ -32,23 +33,20 @@ import it.univpm.OOP2020.TwitterTrends.model.Stats;
  *
  */
 public class TrendsDownload {
-	// private String url;
 	private static List<Location> trendsAvailable;
 	private static List<Location> trendsClosest;
-	//private static JSONParser parser = new JSONParser();
 	private String url;
 	private static List<Metadata> metadata;
-	
+
 	public TrendsDownload() {
 
 	}
 
-	
 	public List<Location> getTrendsAvailable() {
 		url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/available.json";
 		try {
 			JSONArray jsonList = (JSONArray) JSONValue.parseWithException(new urlConnection(url).getJSON());
-		
+
 			trendsAvailable = new ObjectMapper().readValue(jsonList.toString(), new TypeReference<List<Location>>() {
 			});
 
@@ -60,66 +58,27 @@ public class TrendsDownload {
 
 	}
 
-	public static List<Coordinata> getCoord() throws IncorrectFileLocation{
-		BufferedReader reader;
-		String line = null;
-		Scanner scanner = null;
-		List<Coordinata> listCoordinate = new ArrayList<>();
-		int index = 0;
-		try {
-			reader = new BufferedReader(
-					new FileReader(new File("location.txt")));
-			
-			while ((line = reader.readLine()) != null) {
-				Coordinata coord = new Coordinata();
-				scanner = new Scanner(line);
-				scanner.useDelimiter(",");
-				while (scanner.hasNext()) {
-					String data = scanner.next();
-					if (index == 0)
-						coord.setLat(Double.valueOf(data));
-					else if (index == 1)
-						coord.setLon(Double.valueOf(data));
-					else
-						System.out.println("invalid data::" + data);
-					index++;
-				}
-				index = 0;
-				listCoordinate.add(coord);
-			}
 
-			reader.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("File location.txt non trovato!");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("");
-			e.printStackTrace();
-		}
 
-		return listCoordinate;
-
-	}
-	
 	public List<Location> getTrendsClosest() {
 		String urlResponse;
 		JSONObject obj;
-		//JSONValue obj; 
-		String listaAppoggio="[";
+		String listaAppoggio = "[";
+		getCoordinates coordinatesList= new getCoordinates("location.txt");
 		try {
-			for (Coordinata coordinata : TrendsDownload.getCoord()) {
-				url="https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat="
+			for (Coordinata coordinata : coordinatesList.getCoordinatesFromFile()) {
+				url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat="
 						+ coordinata.getLat() + "&long=" + coordinata.getLon();
 				urlResponse = new urlConnection(url).getJSON();
-				obj = (JSONObject) JSONValue.parseWithException(urlResponse.substring(1,(urlResponse.length()-1))); 
-				listaAppoggio+=obj+",";				
-				
+				obj = (JSONObject) JSONValue.parseWithException(urlResponse.substring(1, (urlResponse.length() - 1)));
+				listaAppoggio += obj + ",";
+
 			}
-			listaAppoggio=listaAppoggio.substring(0,listaAppoggio.length()-1)+"]";
-			//Creo il JSONArray che vado poi a passare nella lista che andrò a visualizzare con GET /Data
+			listaAppoggio = listaAppoggio.substring(0, listaAppoggio.length() - 1) + "]";
 			JSONArray jsonTrends = (JSONArray) JSONValue.parseWithException(listaAppoggio);
-			trendsClosest=new ObjectMapper().readValue(jsonTrends.toString(), new TypeReference<List<Location>>() {});
-					
+			trendsClosest = new ObjectMapper().readValue(jsonTrends.toString(), new TypeReference<List<Location>>() {
+			});
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,7 +87,6 @@ public class TrendsDownload {
 
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	public List<Metadata> getMetadata() {
 		metadata = new JSONArray();
@@ -144,47 +102,43 @@ public class TrendsDownload {
 
 		return metadata;
 	}
-	public List<Stats> getProva(){
+
+	public List<Stats> getStats() {
 		getTrendsAvailable();
 		Iterator<Location> it = trendsAvailable.iterator();
-		List<Stats> CountryAvailable = new ArrayList<Stats>();
-		
+		List<Stats> StatsList = new ArrayList<Stats>();
+
 		int i = 0;
-		
+
 		while (it.hasNext()) {
-			Location tmpLoc = it.next();
-			if (tmpLoc.getPlaceType().getPlaceTypeName().equals("Country")) {
-				//System.out.println(tmpLoc.getCountryCode());
-				Stats stats=new Stats(tmpLoc,i);
-				//stats.setCount(i);
-				CountryAvailable.add(stats);
+			Location tmp = it.next();
+			if (tmp.getPlaceType().getPlaceTypeName().equals("Country")) {
+				Stats stats = new Stats(tmp, i);
+				StatsList.add(stats);
 			}
 		}
-		//System.out.println(CountryAvailable);
-		for (Stats tmpCountry : CountryAvailable) {
+		for (Stats var : StatsList) {
 			i = 0;
 			for (Location trend : trendsAvailable) {
-				//System.out.println(trend.getCountryCode());
-				if (trend.getCountryCode()!=null)
-					if (trend.getCountryCode().equals(tmpCountry.getLoc().getCountryCode()))
-					{	i++; tmpCountry.setCount(i);}
-					
-			}
-			System.out.println("Per: " + tmpCountry.getLoc().getCountryCode() + " si hanno: " + tmpCountry.getCount() + "trend");
+				if (trend.getCountryCode() != null)
+					if (trend.getCountryCode().equals(var.getLoc().getCountryCode())) {
+						i++;
+						var.setCount(i);
+					}
 
+			}
+			
 		}
-		Collections.sort(CountryAvailable,new Comparator<Stats>() {
+		Collections.sort(StatsList, new Comparator<Stats>() {
 
 			public int compare(Stats o1, Stats o2) {
-				// TODO Auto-generated method stub
-				return o1.getCount() > o2.getCount() ? -1 : (o1.getCount() < o2.getCount() ) ? 1 : 0;
-				 
+				return o1.getCount() > o2.getCount() ? -1 : (o1.getCount() < o2.getCount()) ? 1 : 0;
+
 			}
 		});
-		//System.out.println(CountryAvailable);
-		return CountryAvailable;
-		
-		
+
+		return StatsList;
+
 	}
-	
+
 }

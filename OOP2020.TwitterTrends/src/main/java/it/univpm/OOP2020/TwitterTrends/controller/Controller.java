@@ -73,10 +73,10 @@ public class Controller {
 	 * GET /TrendsAvailableSorted 
 	 * @return list of Twitter trends available for location
 	 */
-	@GetMapping("/SortedTrendsAvailable")
-	public  ResponseEntity<Object> SortedTrendsAvailable(){
+	@GetMapping("/Stats")
+	public  ResponseEntity<Object> Stats(){
 
-		return new ResponseEntity<>(data.SortedTrendsAvailable(),HttpStatus.OK); 
+		return new ResponseEntity<>(data.Stats(),HttpStatus.OK); 
 	}
 	
 }
