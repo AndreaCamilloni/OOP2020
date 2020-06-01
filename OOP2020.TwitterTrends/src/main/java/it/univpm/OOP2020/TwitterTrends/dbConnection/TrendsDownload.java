@@ -1,17 +1,11 @@
 package it.univpm.OOP2020.TwitterTrends.dbConnection;
 
-import java.io.BufferedReader;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,26 +16,41 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univpm.OOP2020.TwitterTrends.Util.getCoordinates;
 import it.univpm.OOP2020.TwitterTrends.Util.urlConnection;
-import it.univpm.OOP2020.TwitterTrends.exception.IncorrectFileLocation;
 import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 import it.univpm.OOP2020.TwitterTrends.model.Stats;
 
 /**
+ * This is the main class that allows to establish a connection with the db
  * @author Andrea Camilloni
  *
  */
 public class TrendsDownload {
+	/**
+	 *  trendsAvailable
+	 */
 	private static List<Location> trendsAvailable;
+	/**
+	 * trendsClosest
+	 */
 	private static List<Location> trendsClosest;
+	/**
+	 * url
+	 */
 	private String url;
+	/**
+	 * metadata
+	 */
 	private static List<Metadata> metadata;
 
 	public TrendsDownload() {
 
 	}
-
+	/**
+	 * This method allows to ad get all the locations that Twitter has trending topic information for. 
+	 * @return trendsAvailable
+	 */
 	public List<Location> getTrendsAvailable() {
 		url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/available.json";
 		try {
@@ -59,14 +68,19 @@ public class TrendsDownload {
 	}
 
 
-
+	/**
+	 * This method returns the locations that Twitter has trending topic information for, 
+	 * closest to a specified locations, entered by input file such coordinates
+	 * 
+	 * @return trendsClosest
+	 */
 	public List<Location> getTrendsClosest() {
 		String urlResponse;
 		JSONObject obj;
 		String listaAppoggio = "[";
 		getCoordinates coordinatesList= new getCoordinates("location.txt");
 		try {
-			for (Coordinata coordinata : coordinatesList.getCoordinatesFromFile()) {
+			for (Coordinata coordinata : coordinatesList.getCoordinatesRequest()) {
 				url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat="
 						+ coordinata.getLat() + "&long=" + coordinata.getLon();
 				urlResponse = new urlConnection(url).getJSON();
@@ -86,7 +100,10 @@ public class TrendsDownload {
 		return trendsClosest;
 
 	}
-
+	/**
+	 * Method that return a list of Metadata of Closest Trends
+	 * @return metadata
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Metadata> getMetadata() {
 		metadata = new JSONArray();
@@ -102,7 +119,11 @@ public class TrendsDownload {
 
 		return metadata;
 	}
-
+	/**
+	 * getStats() returns a sorted list by CountryCode, of TOP rankings countries 
+	 * with multiple locations with trends.
+	 * @return
+	 */
 	public List<Stats> getStats() {
 		getTrendsAvailable();
 		Iterator<Location> it = trendsAvailable.iterator();

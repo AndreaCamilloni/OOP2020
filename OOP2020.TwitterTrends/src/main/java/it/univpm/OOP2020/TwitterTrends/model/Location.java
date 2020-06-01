@@ -1,23 +1,44 @@
 package it.univpm.OOP2020.TwitterTrends.model;
 
 /**
+ * This class describe a single Location returned by a request to the database(Twitter)
  * @author Andrea Camilloni
  *
  */
 
 public class Location {
 
-	
+	/**
+	 * Name of the Location
+	 */
 	private String name;
+	/**
+	 * Type of Location
+	 */
 	private PlaceType placeType;
+	/**
+	 *  url to yahooapis.com of Location(nowadays is deprecated)
+	 */
 	private String url;
+	/**
+	 * id of Location's country
+	 */
 	private Integer parentid;
+	/**
+	 *  Country' name
+	 */
 	private String country;
+	/**
+	 * id Where On Earth!(nowadays is deprecated)
+	 */
 	private Integer woeid;
+	/**
+	 * Country code
+	 */
 	private String countryCode;
 	
 	/**
-	 * Costruttore
+	 * constructor
 	 */
 	public Location() {
 		super();

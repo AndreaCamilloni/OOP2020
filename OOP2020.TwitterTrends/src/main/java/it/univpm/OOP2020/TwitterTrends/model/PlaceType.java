@@ -3,25 +3,32 @@ package it.univpm.OOP2020.TwitterTrends.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * This class belongs to a Location returns by a db request
+ * 
  * @author Andrea Camilloni
  *
  */
 
 public class PlaceType {
 
-
+	/**
+	 * Place Code
+	 */
 	@JsonProperty("code")
 	private Integer placeTypeCode;
+	/**
+	 * Place name
+	 */
 	@JsonProperty("name")
 	private String placeTypeName;
+
 	/**
 	 * 
 	 */
 	public PlaceType() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @return the placeTypeCode
 	 */

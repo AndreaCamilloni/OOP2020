@@ -11,41 +11,60 @@ import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 import it.univpm.OOP2020.TwitterTrends.model.Stats;
 
 /**
+ * Service for implementation of main requests
  * @author Andrea Camilloni
  *
  */
 @org.springframework.stereotype.Service
 public class ServiceImplementation implements Service {
 
-private TrendsDownload db=new TrendsDownload();
-	
+	/**
+	 * initialization of Database Connection
+	 */
+	private TrendsDownload db = new TrendsDownload();
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Metadata> MetadataList() {
-		
+
 		return db.getMetadata();
 	}
+	
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public List<Location> DataList() {
-		
+
 		return db.getTrendsClosest();
 	}
 
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
-	
 	public List<Location> TrendsAvailable() {
-		
+
 		return db.getTrendsAvailable();
 	}
+
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public List<Location> DataList(String latData, String longData) {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public List<Stats> Stats() {
 		// TODO Auto-generated method stub
 		return db.getStats();
 	}
-	
 
 }

@@ -2,6 +2,12 @@ package it.univpm.OOP2020.TwitterTrends.service;
 
 import java.util.List;
 
+/**
+ * Service for implementation of main requests
+ * @author Andrea Camilloni 
+ *
+ */
+
 
 import it.univpm.OOP2020.TwitterTrends.model.Location;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
@@ -10,21 +16,33 @@ import it.univpm.OOP2020.TwitterTrends.model.Stats;
 @org.springframework.stereotype.Service
 public interface Service {
 	/**
-	 * Description of the method MetadataList.
+	 * MedadataList() returns a list of Metadata which describes 
+	 * attributes and types of Location
+	 * @return List of Metadata
 	 */
 	public abstract List<Metadata> MetadataList();
 
 	/**
-	 * Description of the method DataList.
+	 * DataList() return a List of all the Location
+	 * that Twitter has trending topic information for,
+	 * closest to a specified locations, entered by input file.
+	 * @return List of Location 
 	 */
 	public abstract List<Location> DataList();
 	public abstract List<Location> DataList(String latData, String longData);
 	
 
 	/**
-	 * Description of the method TrendsAvailable.
+	 * TrendsAvailable() return a List of all the Location
+	 * that Twitter has trending topic information for.
+	 * @return List of Location 
 	 */
 	public abstract List<Location> TrendsAvailable();
+	/**
+	 * Stats() a sorted list by CountryCode, of TOP rankings countries 
+	 * with multiple locations with trends.
+	 * @return List of Stats 
+	 */
 	public abstract List<Stats> Stats();
 	
 

@@ -15,20 +15,22 @@ import it.univpm.OOP2020.TwitterTrends.service.ServiceImplementation;
 
 
 /**
+ * Controller class manages all separate routes through REST GET API request
  * @author Andrea Camilloni
  *
  */
 @RestController
 public class Controller {
 	/**
-	 * 
+	 *  Web service initialization
 	 */
 	@Autowired
 	private Service data=new ServiceImplementation();
 	
 
 	/**
-	 * @return
+	 * This route return a list of Metadata of Closest Trends
+	 * @return list of Metadata
 	 */
 	@GetMapping("/Metadata")
 	public ResponseEntity<Object> getMeta(){
@@ -37,7 +39,9 @@ public class Controller {
 	
 	
 	/**
-	 * @return
+	 * This route returns the locations that Twitter has trending topic information for, 
+	 * closest to a specified locations, entered by input file.
+	 * @return list of Data
 	 */
 	@GetMapping("/Data")
 	public ResponseEntity<Object> getData(){
@@ -57,21 +61,20 @@ public class Controller {
 	}
 
 	
-	//Metodi aggiuntivi utili per lo studio generale dei TwitterTrends
+
 	/**
-	 * GET /TrendsAvailable 
+	 * This route returns the locations that Twitter has trending topic information for.
 	 * @return list of Twitter trends available for location
 	 */
 	@GetMapping("/TrendsAvailable")
 	public  ResponseEntity<Object> TrendsAvailable(){
-		//utilizzo tale metodo per scaricare una lista completa delle location 
-		//per cui twitter dispone di trend per fini prossimi allo studio che vado 
-		//a fare poi con TrendClosest(obiettivo del progetto)
+
 		return new ResponseEntity<>(data.TrendsAvailable(),HttpStatus.OK); 
 	}
 	/**
-	 * GET /TrendsAvailableSorted 
-	 * @return list of Twitter trends available for location
+	 * This route returns a sorted list by CountryCode, of TOP rankings countries 
+	 * with multiple locations with trends.
+	 * @return list of Stats
 	 */
 	@GetMapping("/Stats")
 	public  ResponseEntity<Object> Stats(){
