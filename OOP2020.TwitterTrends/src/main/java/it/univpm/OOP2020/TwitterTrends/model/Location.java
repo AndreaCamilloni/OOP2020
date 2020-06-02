@@ -45,6 +45,16 @@ public class Location {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Location(Location l) {
+		this.name=l.getName();
+		//this.placeType=new PlaceType(l.getPlaceType().getPlaceTypeCode(),l.getPlaceType().getPlaceTypeName());
+		this.url=l.getUrl();
+		this.parentid=l.getParentid();
+		this.country=l.getCountry();
+		this.woeid=l.getWoeid();
+		this.countryCode=l.getCountryCode();
+	}
+
 	/**
 	 * @return the name
 	 */

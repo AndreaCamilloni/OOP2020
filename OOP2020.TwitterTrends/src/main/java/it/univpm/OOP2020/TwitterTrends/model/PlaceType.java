@@ -29,6 +29,12 @@ public class PlaceType {
 		super();
 	}
 
+	public PlaceType(Integer placeTypeCode2, String placeTypeName2) {
+		// TODO Auto-generated constructor stub
+		this.placeTypeCode=placeTypeCode2;
+		this.placeTypeName=placeTypeName2;
+	}
+
 	/**
 	 * @return the placeTypeCode
 	 */

@@ -14,10 +14,13 @@ import org.json.simple.JSONValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.univpm.OOP2020.TwitterTrends.Util.Distance;
 import it.univpm.OOP2020.TwitterTrends.Util.getCoordinates;
 import it.univpm.OOP2020.TwitterTrends.Util.urlConnection;
+import it.univpm.OOP2020.TwitterTrends.exception.BadDataInput;
 import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
+import it.univpm.OOP2020.TwitterTrends.model.LocationWithDistance;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 import it.univpm.OOP2020.TwitterTrends.model.Stats;
 
@@ -99,6 +102,23 @@ public class TrendsDownload {
 		}
 		return trendsClosest;
 
+	}
+	public List<LocationWithDistance> getTrendsClosestWithDistance(String placeName) throws BadDataInput{
+		List<LocationWithDistance> list=new ArrayList<LocationWithDistance>();
+		getTrendsClosest();
+		String[] placeCoord= new getCoordinates().getLatLong(placeName); //place punto di riferimento
+		String[] tmp;
+		Distance d=new Distance();
+		for (Location loc : trendsClosest) {
+			tmp= new getCoordinates().getLatLong(loc.getName());
+			
+			LocationWithDistance l = new LocationWithDistance(loc);
+			l.setDistance(d.distanza(placeCoord[0], placeCoord[1], tmp[0], tmp[1]));
+			list.add(l);
+		}
+		
+		return list;
+		
 	}
 	/**
 	 * Method that return a list of Metadata of Closest Trends

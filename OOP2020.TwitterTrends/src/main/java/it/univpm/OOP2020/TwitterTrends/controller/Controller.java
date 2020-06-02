@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import it.univpm.OOP2020.TwitterTrends.exception.BadDataInput;
 import it.univpm.OOP2020.TwitterTrends.service.Service;
 import it.univpm.OOP2020.TwitterTrends.service.ServiceImplementation;
 
@@ -42,10 +42,16 @@ public class Controller {
 	 * This route returns the locations that Twitter has trending topic information for, 
 	 * closest to a specified locations, entered by input file.
 	 * @return list of Data
+	 * @throws BadDataInput 
 	 */
 	@GetMapping("/Data")
 	public ResponseEntity<Object> getData(){
 		return new ResponseEntity<>(data.DataList(),HttpStatus.OK); 
+	}
+
+	@GetMapping("/Dataa")
+	public ResponseEntity<Object> getData(@RequestParam(required = false, name= "place") String placeName) throws BadDataInput{
+		return new ResponseEntity<>(data.DataList(placeName),HttpStatus.OK); 
 	}
 
 	/**

@@ -2,6 +2,8 @@ package it.univpm.OOP2020.TwitterTrends.service;
 
 import java.util.List;
 
+import it.univpm.OOP2020.TwitterTrends.exception.BadDataInput;
+
 /**
  * Service for implementation of main requests
  * @author Andrea Camilloni 
@@ -10,6 +12,7 @@ import java.util.List;
 
 
 import it.univpm.OOP2020.TwitterTrends.model.Location;
+import it.univpm.OOP2020.TwitterTrends.model.LocationWithDistance;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 import it.univpm.OOP2020.TwitterTrends.model.Stats;
 
@@ -29,6 +32,7 @@ public interface Service {
 	 * @return List of Location 
 	 */
 	public abstract List<Location> DataList();
+	public abstract List<LocationWithDistance> DataList(String placeName) throws BadDataInput;
 	public abstract List<Location> DataList(String latData, String longData);
 	
 

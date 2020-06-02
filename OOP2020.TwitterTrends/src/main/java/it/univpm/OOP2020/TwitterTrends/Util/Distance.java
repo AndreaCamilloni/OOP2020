@@ -7,7 +7,37 @@ package it.univpm.OOP2020.TwitterTrends.Util;
 
 public class Distance {
 
-	public double distanza(double latA, double lonA, double latB, double lonB) {
+	private double latA, lonA, latB, lonB;
+	
+
+	/**
+	 * 
+	 */
+	public Distance() {
+		super();
+	}
+
+	/**
+	 * @param latA
+	 * @param lonA
+	 * @param latB
+	 * @param lonB
+	 */
+	public Distance(double latA, double lonA, double latB, double lonB) {
+		super();
+		this.latA = latA;
+		this.lonA = lonA;
+		this.latB = latB;
+		this.lonB = lonB;
+	}
+
+	public double distanza(String a0, String a1, String b0, String b1) {
+
+		latA = stringToDouble(a0);
+		lonA = stringToDouble(a1);
+		latB = stringToDouble(b0);
+		lonB = stringToDouble(b1);
+
 		/* Definisce le costanti e le variabili */
 		double R = 6371;
 		double pigreco = 3.1415927;
@@ -29,5 +59,9 @@ public class Distance {
 		 */
 		d = p * R;
 		return (d);
+	}
+
+	private double stringToDouble(String a) {
+		return Double.parseDouble(a);
 	}
 }

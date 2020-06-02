@@ -6,7 +6,9 @@ package it.univpm.OOP2020.TwitterTrends.service;
 import java.util.List;
 
 import it.univpm.OOP2020.TwitterTrends.dbConnection.TrendsDownload;
+import it.univpm.OOP2020.TwitterTrends.exception.BadDataInput;
 import it.univpm.OOP2020.TwitterTrends.model.Location;
+import it.univpm.OOP2020.TwitterTrends.model.LocationWithDistance;
 import it.univpm.OOP2020.TwitterTrends.model.Metadata;
 import it.univpm.OOP2020.TwitterTrends.model.Stats;
 
@@ -56,6 +58,15 @@ public class ServiceImplementation implements Service {
 	@Override
 	public List<Location> DataList(String latData, String longData) {
 		return null;
+	}
+
+	/**
+	 *{@inheritDoc}
+	 * @throws BadDataInput 
+	 */
+	@Override
+	public List<LocationWithDistance> DataList(String placeName) throws BadDataInput {
+		return db.getTrendsClosestWithDistance(placeName);
 	}
 
 	/**
