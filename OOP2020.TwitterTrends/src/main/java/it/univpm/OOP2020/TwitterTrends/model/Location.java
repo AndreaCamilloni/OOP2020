@@ -47,7 +47,7 @@ public class Location {
 	
 	public Location(Location l) {
 		this.name=l.getName();
-		//this.placeType=new PlaceType(l.getPlaceType().getPlaceTypeCode(),l.getPlaceType().getPlaceTypeName());
+		this.placeType=l.getPlaceType();
 		this.url=l.getUrl();
 		this.parentid=l.getParentid();
 		this.country=l.getCountry();

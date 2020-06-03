@@ -1,7 +1,11 @@
 package it.univpm.OOP2020.TwitterTrends.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LocationWithDistance extends Location {
+	@JsonProperty("Coordinates")
 	private Coordinata place;
+	@JsonProperty("Distance[Km]")
 	private double distance;
 
 	/**
@@ -9,6 +13,7 @@ public class LocationWithDistance extends Location {
 	 */
 	public LocationWithDistance(Location l) {
 		super(l);
+		place=new Coordinata();
 		place.setPlaceName(l.getName());
 	}
 	public LocationWithDistance() {
@@ -18,6 +23,7 @@ public class LocationWithDistance extends Location {
 	/**
 	 * @return the place
 	 */
+	@JsonProperty("Coordinates")
 	public Coordinata getPlace() {
 		return place;
 	}
@@ -25,6 +31,7 @@ public class LocationWithDistance extends Location {
 	/**
 	 * @param place the place to set
 	 */
+	@JsonProperty("Coordinates")
 	public void setPlace(Coordinata place) {
 		this.place = place;
 	}
@@ -32,6 +39,7 @@ public class LocationWithDistance extends Location {
 	/**
 	 * @return the distance
 	 */
+	@JsonProperty("Distance[Km]")
 	public double getDistance() {
 		return distance;
 	}
@@ -39,9 +47,11 @@ public class LocationWithDistance extends Location {
 	/**
 	 * @param distance the distance to set
 	 */
+	@JsonProperty("Distance[Km]")
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
+	
 	
 
 }

@@ -3,6 +3,9 @@
  */
 package it.univpm.OOP2020.TwitterTrends.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This class describes the coordinates of a location that can be added by input
  * 
@@ -13,21 +16,23 @@ public class Coordinata {
 	/**
 	 * latitude
 	 */
+	@JsonProperty("latitude")
 	private double lat;
 	/**
 	 * longitude
 	 */
+	@JsonProperty("longitude")
 	private double lon;
 
 	/**
 	 * place name
 	 */
+	@JsonIgnore
 	private String placeName;
 	
 	public Coordinata() {
 
 	}
-
 	
 	/**
 	 * @param placeName
@@ -43,6 +48,7 @@ public class Coordinata {
 	 * 
 	 * @return the lat
 	 */
+	@JsonProperty("latitude")
 	public double getLat() {
 		return lat;
 	}
@@ -52,6 +58,7 @@ public class Coordinata {
 	 * 
 	 * @param lat the lat to set
 	 */
+	@JsonProperty("latitude")
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
@@ -61,6 +68,7 @@ public class Coordinata {
 	 * 
 	 * @return the lon
 	 */
+	@JsonProperty("longitude")
 	public double getLon() {
 		return lon;
 	}
@@ -70,6 +78,7 @@ public class Coordinata {
 	 * 
 	 * @param lon the lon to set
 	 */
+	@JsonProperty("longitude")
 	public void setLon(double lon) {
 		this.lon = lon;
 	}
@@ -77,6 +86,7 @@ public class Coordinata {
 	/**
 	 * @return the placeName
 	 */
+	@JsonIgnore
 	public String getPlaceName() {
 		return placeName;
 	}
@@ -84,6 +94,7 @@ public class Coordinata {
 	/**
 	 * @param placeName the placeName to set
 	 */
+	@JsonIgnore
 	public void setPlaceName(String placeName) {
 		this.placeName = placeName;
 	}

@@ -1,1 +1,1 @@
-Milano,Genoa,Roma,Palermo,Napoli,Firenze
+Bologna,Milano,Genoa,Roma,Palermo(IT),Napoli

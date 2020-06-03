@@ -49,8 +49,8 @@ public class Controller {
 		return new ResponseEntity<>(data.DataList(),HttpStatus.OK); 
 	}
 
-	@GetMapping("/Dataa")
-	public ResponseEntity<Object> getData(@RequestParam(required = false, name= "place") String placeName) throws BadDataInput{
+	@GetMapping("/DataWithDistanceFrom")
+	public ResponseEntity<Object> getData(@RequestParam(required = false, name= "name") String placeName) throws BadDataInput{
 		return new ResponseEntity<>(data.DataList(placeName),HttpStatus.OK); 
 	}
 

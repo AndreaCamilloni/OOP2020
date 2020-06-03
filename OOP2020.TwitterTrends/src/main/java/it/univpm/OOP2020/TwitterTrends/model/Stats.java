@@ -16,16 +16,17 @@ public class Stats extends Location  {
 	 * trend count by country
 	 */
 	private int count;
-	/**
-	 * location
-	 */
-	private Location loc;
-
+	
+	
+	private String[] town;
+	
 	/**
 	 * Constructor
+	 * @param loc to pass to superclass
+	 * @param c : count of trend for country
 	 */
 	public Stats(Location loc,int c) {
-		this.loc=loc;
+		super(loc);
 		this.count=c;
 	}
 	/**
@@ -44,18 +45,24 @@ public class Stats extends Location  {
 		// TODO Auto-generated method stub
 		return count;
 	}
-
-	@Override
-	public String toString() {
-		return "Stats [count=" + count + ", loc=" + loc + "]";
+	/**
+	 * @return the town
+	 */
+	public String[] getTown() {
+		return town;
 	}
 	/**
-	 * 
-	 * @return
+	 * @param town the town to set
 	 */
-	public Location getLoc() {
-		// TODO Auto-generated method stub
-		return loc;
+	public void setTown(String[] town) {
+		this.town = town;
+	}
+	@Override
+	public String toString() {
+		return "Stats [count=" + count + ", getName()=" + getName() + ", getPlaceType()=" + getPlaceType()
+				+ ", getUrl()=" + getUrl() + ", getParentid()=" + getParentid() + ", getCountry()=" + getCountry()
+				+ ", getWoeid()=" + getWoeid() + ", getCountryCode()=" + getCountryCode() + ", toString()="
+				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
 	

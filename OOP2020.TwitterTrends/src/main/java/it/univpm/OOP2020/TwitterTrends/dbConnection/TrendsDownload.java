@@ -1,6 +1,5 @@
 package it.univpm.OOP2020.TwitterTrends.dbConnection;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,12 +25,13 @@ import it.univpm.OOP2020.TwitterTrends.model.Stats;
 
 /**
  * This is the main class that allows to establish a connection with the db
+ * 
  * @author Andrea Camilloni
  *
  */
 public class TrendsDownload {
 	/**
-	 *  trendsAvailable
+	 * trendsAvailable
 	 */
 	private static List<Location> trendsAvailable;
 	/**
@@ -50,8 +50,11 @@ public class TrendsDownload {
 	public TrendsDownload() {
 
 	}
+
 	/**
-	 * This method allows to ad get all the locations that Twitter has trending topic information for. 
+	 * This method allows to ad get all the locations that Twitter has trending
+	 * topic information for.
+	 * 
 	 * @return trendsAvailable
 	 */
 	public List<Location> getTrendsAvailable() {
@@ -70,10 +73,9 @@ public class TrendsDownload {
 
 	}
 
-
 	/**
-	 * This method returns the locations that Twitter has trending topic information for, 
-	 * closest to a specified locations, entered by input file such coordinates
+	 * This method returns the locations that Twitter has trending topic information
+	 * for, closest to a specified locations, entered by input file such coordinates
 	 * 
 	 * @return trendsClosest
 	 */
@@ -81,7 +83,7 @@ public class TrendsDownload {
 		String urlResponse;
 		JSONObject obj;
 		String listaAppoggio = "[";
-		getCoordinates coordinatesList= new getCoordinates("location.txt");
+		getCoordinates coordinatesList = new getCoordinates("location.txt");
 		try {
 			for (Coordinata coordinata : coordinatesList.getCoordinatesRequest()) {
 				url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/closest.json?lat="
@@ -103,25 +105,33 @@ public class TrendsDownload {
 		return trendsClosest;
 
 	}
-	public List<LocationWithDistance> getTrendsClosestWithDistance(String placeName) throws BadDataInput{
-		List<LocationWithDistance> list=new ArrayList<LocationWithDistance>();
+
+	public List<LocationWithDistance> getTrendsClosestWithDistance(String placeName) throws BadDataInput {
+		List<LocationWithDistance> list = new ArrayList<LocationWithDistance>();
 		getTrendsClosest();
-		String[] placeCoord= new getCoordinates().getLatLong(placeName); //place punto di riferimento
+		String[] placeCoord = new getCoordinates().getLatLong(placeName); // place punto di riferimento
 		String[] tmp;
-		Distance d=new Distance();
+		Distance d = new Distance();
 		for (Location loc : trendsClosest) {
-			tmp= new getCoordinates().getLatLong(loc.getName());
-			
+			// loc.getName()+", "+loc.getCountryCode() risolve il problema a richieste con
+			// nomi città in inglese.
+			// ad esempio: passando Naples veniva restituito Naples,Florida => passando il
+			// countrycode si risolve il problema
+			tmp = new getCoordinates().getLatLong(loc.getName() + ", " + loc.getCountryCode()); //
 			LocationWithDistance l = new LocationWithDistance(loc);
+			l.getPlace().setLat(Double.parseDouble(tmp[0]));
+			l.getPlace().setLon(Double.parseDouble(tmp[1]));
 			l.setDistance(d.distanza(placeCoord[0], placeCoord[1], tmp[0], tmp[1]));
 			list.add(l);
 		}
-		
+
 		return list;
-		
+
 	}
+
 	/**
 	 * Method that return a list of Metadata of Closest Trends
+	 * 
 	 * @return metadata
 	 */
 	@SuppressWarnings("unchecked")
@@ -139,9 +149,11 @@ public class TrendsDownload {
 
 		return metadata;
 	}
+
 	/**
-	 * getStats() returns a sorted list by CountryCode, of TOP rankings countries 
+	 * getStats() returns a sorted list by CountryCode, of TOP rankings countries
 	 * with multiple locations with trends.
+	 * 
 	 * @return
 	 */
 	public List<Stats> getStats() {
@@ -158,17 +170,24 @@ public class TrendsDownload {
 				StatsList.add(stats);
 			}
 		}
+
 		for (Stats var : StatsList) {
+			String appoggio = "";
 			i = 0;
 			for (Location trend : trendsAvailable) {
 				if (trend.getCountryCode() != null)
-					if (trend.getCountryCode().equals(var.getLoc().getCountryCode())) {
-						i++;
+					if (trend.getCountryCode().equals(var.getCountryCode()) && trend.getName() != trend.getCountry()) {
+
+						if (trend.getPlaceType().getPlaceTypeName().equals("Town")) {
+							appoggio += trend.getName() + ",";
+							i++;
+						}
 						var.setCount(i);
 					}
 
 			}
-			
+
+			var.setTown(appoggio.split(","));
 		}
 		Collections.sort(StatsList, new Comparator<Stats>() {
 
