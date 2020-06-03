@@ -32,7 +32,21 @@ public interface Service {
 	 * @return List of Location 
 	 */
 	public abstract List<Location> DataList();
+	/**
+	 * DataList() return a List of all the Location with distance from placeName,
+	 * that Twitter has trending topic information for,
+	 * closest to a specified locations,
+	 * @param placeName
+	 * @return
+	 * @throws BadDataInput
+	 */
 	public abstract List<LocationWithDistance> DataList(String placeName) throws BadDataInput;
+	/**
+	 * 
+	 * @param latData
+	 * @param longData
+	 * @return
+	 */
 	public abstract List<Location> DataList(String latData, String longData);
 	
 

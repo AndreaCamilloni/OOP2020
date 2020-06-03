@@ -44,7 +44,10 @@ public class Location {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+	/**
+	 * Constructor 
+	 * @param l
+	 */
 	public Location(Location l) {
 		this.name=l.getName();
 		this.placeType=l.getPlaceType();

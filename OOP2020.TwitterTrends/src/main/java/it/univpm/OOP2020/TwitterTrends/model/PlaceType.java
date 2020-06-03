@@ -15,7 +15,7 @@ public class PlaceType {
 	 * Place Code
 	 */
 	@JsonProperty("code")
-	private Integer placeTypeCode;
+	private int placeTypeCode;
 	/**
 	 * Place name
 	 */
@@ -28,11 +28,15 @@ public class PlaceType {
 	public PlaceType() {
 		super();
 	}
-
-	public PlaceType(Integer placeTypeCode2, String placeTypeName2) {
+	/**
+	 * 
+	 * @param code
+	 * @param name
+	 */
+	public PlaceType(int code, String name) {
 		// TODO Auto-generated constructor stub
-		this.placeTypeCode=placeTypeCode2;
-		this.placeTypeName=placeTypeName2;
+		this.placeTypeCode=code;
+		this.placeTypeName=name;
 	}
 
 	/**
@@ -67,6 +71,9 @@ public class PlaceType {
 		this.placeTypeName = placeTypeName;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "PlaceType [code=" + placeTypeCode + ", name=" + placeTypeName + "]";

@@ -3,19 +3,29 @@ package it.univpm.OOP2020.TwitterTrends.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LocationWithDistance extends Location {
+	/**
+	 * 
+	 */
 	@JsonProperty("Coordinates")
 	private Coordinata place;
+	/**
+	 * 
+	 */
 	@JsonProperty("Distance[Km]")
 	private double distance;
 
 	/**
-	 * 
+	 * Constructor 
+	 * @param l
 	 */
 	public LocationWithDistance(Location l) {
 		super(l);
 		place=new Coordinata();
 		place.setPlaceName(l.getName());
 	}
+	/**
+	 * Constructor 
+	 */
 	public LocationWithDistance() {
 		
 	}

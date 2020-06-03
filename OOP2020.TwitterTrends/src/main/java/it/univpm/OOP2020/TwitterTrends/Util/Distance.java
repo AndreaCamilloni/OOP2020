@@ -1,12 +1,17 @@
 package it.univpm.OOP2020.TwitterTrends.Util;
 
 /**
+ * This class is used to calculate distance between two Location
+ * by entered coordinates
  * @author Andrea Camilloni
  *
  */
 
 public class Distance {
 
+	/**
+	 * Coordinates of 2 Location A and B
+	 */
 	private double latA, lonA, latB, lonB;
 	
 
@@ -18,6 +23,7 @@ public class Distance {
 	}
 
 	/**
+	 * Constructor with parameters of location A and B
 	 * @param latA
 	 * @param lonA
 	 * @param latB
@@ -31,6 +37,14 @@ public class Distance {
 		this.lonB = lonB;
 	}
 
+	/**
+	 * This method return distance[km] of the entered parameters of 2 Location
+	 * @param a0
+	 * @param a1
+	 * @param b0
+	 * @param b1
+	 * @return distance between A and B
+	 */
 	public double distanza(String a0, String a1, String b0, String b1) {
 
 		latA = stringToDouble(a0);
@@ -61,6 +75,11 @@ public class Distance {
 		return (d);
 	}
 
+	/**
+	 * Method that return a double from input string
+	 * @param a
+	 * @return Double.parseDouble(a);
+	 */
 	private double stringToDouble(String a) {
 		return Double.parseDouble(a);
 	}

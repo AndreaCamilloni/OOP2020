@@ -6,7 +6,8 @@ package it.univpm.OOP2020.TwitterTrends.model;
 
 
 /**
- * This class
+ * This class describes a single Stat for a Country 
+ *  
  * @author Andrea Camilloni
  *
  */
@@ -17,7 +18,9 @@ public class Stats extends Location  {
 	 */
 	private int count;
 	
-	
+	/**
+	 * Town of the relative country, with trend 
+	 */
 	private String[] town;
 	
 	/**
@@ -57,6 +60,9 @@ public class Stats extends Location  {
 	public void setTown(String[] town) {
 		this.town = town;
 	}
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "Stats [count=" + count + ", getName()=" + getName() + ", getPlaceType()=" + getPlaceType()

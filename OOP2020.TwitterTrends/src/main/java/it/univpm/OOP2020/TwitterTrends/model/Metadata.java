@@ -1,14 +1,23 @@
 package it.univpm.OOP2020.TwitterTrends.model;
 
 /**
+ * Class that describes a single Metadata
  * @author Andrea Camilloni
  *
  */
 
 public class Metadata {
-	
+	/**
+	 * alias 
+	 */
 	private String alias;
+	/**
+	 * sourceField
+	 */
 	private String sourceField;
+	/**
+	 * type 
+	 */
 	private String type;
 	/**
 	 * @param alias

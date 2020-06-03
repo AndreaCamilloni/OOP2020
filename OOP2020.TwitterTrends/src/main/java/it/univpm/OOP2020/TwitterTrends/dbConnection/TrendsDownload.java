@@ -111,7 +111,14 @@ public class TrendsDownload {
 		return trendsClosest;
 
 	}
-
+	/**
+	 * This method returns the locations that Twitter has trending topic information
+	 * for, closest to a specified locations, entered by input file such coordinates;
+	 * and it calculates the distance of location from the entered placeName 
+	 * @param placeName
+	 * @return
+	 * @throws BadDataInput
+	 */
 	public List<LocationWithDistance> getTrendsClosestWithDistance(String placeName) throws BadDataInput {
 		List<LocationWithDistance> list = new ArrayList<LocationWithDistance>();
 		getTrendsClosest();
