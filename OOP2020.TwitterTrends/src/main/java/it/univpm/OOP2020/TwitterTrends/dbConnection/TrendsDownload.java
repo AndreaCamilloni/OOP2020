@@ -91,6 +91,12 @@ public class TrendsDownload {
 				urlResponse = new urlConnection(url).getJSON();
 				obj = (JSONObject) JSONValue.parseWithException(urlResponse.substring(1, (urlResponse.length() - 1)));
 				listaAppoggio += obj + ",";
+				//Nota
+				//le seguenti condizioni non possono esser rispettate sempre poichè i nomi dell location
+				//dovrebbero coincidere con quelli assegnati da twitter in inglese
+				//esempio: Naples != Napoli
+				//if(coordinata.getPlaceName().equals(obj.get("name").toString()))listaAppoggio += obj + ",";
+				//else System.out.println("Twitted has not trend for " + coordinata.getPlaceName());
 
 			}
 			listaAppoggio = listaAppoggio.substring(0, listaAppoggio.length() - 1) + "]";
