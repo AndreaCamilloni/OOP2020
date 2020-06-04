@@ -58,7 +58,7 @@ _(For /Data and /DataWithDistanceFrom roots the user must configure the file "lo
   <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/get%20METADATA.png"  title="Metadata">
 </p>
 
-**GET /Data** (http://localhost:8080/Data)
+**GET /Data** (http://localhost:8080/Data) It shows the locations that Twitter has trending topic information for, closest to the locations entered by input file
 ```json
 [
     {
@@ -74,13 +74,13 @@ _(For /Data and /DataWithDistanceFrom roots the user must configure the file "lo
         "countryCode": "IT"
     },
     ...
-    ]
+ ]
 ```    
 <p align="center">
   <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/GET%20Data.png"  title="Data">
 </p>
 
-**GET /DataWithDistanceFrom?name=Ancona**  (http://localhost:8080/DataWithDistanceFrom?name=Ancona)
+**GET /DataWithDistanceFrom?name="place"**  (http://localhost:8080/DataWithDistanceFrom?name=Ancona) It shows the locations that Twitter has trending topic information for, closest to the locations entered by input file and it displays the distance of each location from "place"
 
 ```json
 [
@@ -101,8 +101,24 @@ _(For /Data and /DataWithDistanceFrom roots the user must configure the file "lo
         },
         "Distance[Km]": 259.8147529182084
     },
-    ....
-    ]
+    {
+        "name": "Milan",
+        "placeType": {
+            "code": 7,
+            "name": "Town"
+        },
+        "url": "http://where.yahooapis.com/v1/place/718345",
+        "parentid": 23424853,
+        "country": "Italy",
+        "woeid": 718345,
+        "countryCode": "IT",
+        "Coordinates": {
+            "latitude": 9.19034,
+            "longitude": 45.46416
+        },
+        "Distance[Km]": 521.5067507327918
+    }
+]
 
 ```   
 <p align="center">
@@ -115,9 +131,91 @@ It show a list of the locations that Twitter has trending topic information for,
   <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/Get%20TrendsAvailable.png"  title="TrendsAvailable">
 </p>
 
-**GET /Stats** (http://localhost:8080/Stats) 
+**GET /Stats** (http://localhost:8080/Stats) It displays the Country that Twitter has trending topic information for, sorted by how many town, for each Country, have trends. The statistic was made by comparing countrycodes.
+
+The count parameter identifies how many town are available for each Country.
+The 
+
 ``` json
 [
+ {
+        "name": "United States",
+        "placeType": {
+            "code": 12,
+            "name": "Country"
+        },
+        "url": "http://where.yahooapis.com/v1/place/23424977",
+        "parentid": 1,
+        "country": "United States",
+        "woeid": 23424977,
+        "countryCode": "US",
+        "count": 63,
+        "town": [
+            "Albuquerque",
+            "Atlanta",
+            "Austin",
+            "Baltimore",
+            "Baton Rouge",
+            "Birmingham",
+            "Boston",
+            "Charlotte",
+            "Chicago",
+            "Cincinnati",
+            "Cleveland",
+            "Colorado Springs",
+            "Columbus",
+            "Dallas-Ft. Worth",
+            "Denver",
+            "Detroit",
+            "El Paso",
+            "Fresno",
+            "Greensboro",
+            "Harrisburg",
+            "Honolulu",
+            "Houston",
+            "Indianapolis",
+            "Jackson",
+            "Jacksonville",
+            "Kansas City",
+            "Las Vegas",
+            "Long Beach",
+            "Los Angeles",
+            "Louisville",
+            "Memphis",
+            "Mesa",
+            "Miami",
+            "Milwaukee",
+            "Minneapolis",
+            "Nashville",
+            "New Haven",
+            "New Orleans",
+            "New York",
+            "Norfolk",
+            "Oklahoma City",
+            "Omaha",
+            "Orlando",
+            "Philadelphia",
+            "Phoenix",
+            "Pittsburgh",
+            "Portland",
+            "Providence",
+            "Raleigh",
+            "Richmond",
+            "Sacramento",
+            "St. Louis",
+            "Salt Lake City",
+            "San Antonio",
+            "San Diego",
+            "San Francisco",
+            "San Jose",
+            "Seattle",
+            "Tallahassee",
+            "Tampa",
+            "Tucson",
+            "Virginia Beach",
+            "Washington"
+        ]
+    },
 {
         "name": "United Kingdom",
         "placeType": {
@@ -158,9 +256,8 @@ It show a list of the locations that Twitter has trending topic information for,
             "London",
             "Belfast"
         ]
-    },
-    ....
-    ]
+    }
+]
 ``` 
 <p align="center">
   <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/GET%20Stats.png"  title="Stats">
