@@ -1,6 +1,10 @@
 package it.univpm.OOP2020.TwitterTrends.exception;
 
 /**
+ * This exception is called by a method not implemented.
+ * It describes exception in input file such as:
+ * -Wrong data
+ * -Too many input for line
  * @author Andrea Camilloni
  *
  */

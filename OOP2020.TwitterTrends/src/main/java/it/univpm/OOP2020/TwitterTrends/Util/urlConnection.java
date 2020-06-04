@@ -31,7 +31,7 @@ public class urlConnection  {
 	 */
 	@SuppressWarnings("resource")
 	public String getJSON(){
-		String jSONString=null; 
+		String jSONString=""; 
 		try {
 			jSONString= new Scanner(new URL(url).openStream(),
 					"UTF-8").useDelimiter("\\A").next();

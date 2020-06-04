@@ -90,6 +90,8 @@ public class TrendsDownload {
 						+ coordinata.getLat() + "&long=" + coordinata.getLon();
 				urlResponse = new urlConnection(url).getJSON();
 				obj = (JSONObject) JSONValue.parseWithException(urlResponse.substring(1, (urlResponse.length() - 1)));
+				if(obj.get("errors")!=null)
+					throw new BadDataInput(obj.toString());
 				listaAppoggio += obj + ",";
 				//Nota
 				//le seguenti condizioni non possono esser rispettate sempre poichè i nomi dell location
@@ -123,6 +125,7 @@ public class TrendsDownload {
 		List<LocationWithDistance> list = new ArrayList<LocationWithDistance>();
 		getTrendsClosest();
 		String[] placeCoord = new getCoordinates().getLatLong(placeName); // place punto di riferimento
+		
 		String[] tmp;
 		Distance d = new Distance();
 		for (Location loc : trendsClosest) {

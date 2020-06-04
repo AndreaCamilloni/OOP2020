@@ -153,6 +153,8 @@ public class getCoordinates {
 	}
 
 	
+	
+	//Questo metodo veniva utilizzato inizialmente per leggere latitudine e longitudine da file di testo
 	/**
 	 * This method is not implemented.
 	 * 
