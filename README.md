@@ -273,11 +273,26 @@ The count parameter identifies how many town are available for each Country.
 </p>
 
 ### dbConnection
+<p align="center">
+  <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/dbConnection.png" title="dbConnection">
+</p>
 
 ### Controller
+<p align="center">
+  <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/Controller.png" title="Controller">
+</p>
 
 ### Util
+<p align="center">
+  <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/Util.png" title="Util">
+</p>
 
 ### Service
+<p align="center">
+  <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/service.png" title="Service">
+</p>
 
 ### Exception
+<p align="center">
+  <img src="" title="Exception">
+</p>
