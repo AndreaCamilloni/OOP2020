@@ -50,7 +50,7 @@ public class Controller {
 	}
 
 	@GetMapping("/DataWithDistanceFrom")
-	public ResponseEntity<Object> getData(@RequestParam(required = false, name= "name") String placeName) throws BadDataInput{
+	public ResponseEntity<Object> getData(@RequestParam(required = false, name= "name", defaultValue = "Ancona") String placeName) throws BadDataInput{
 		return new ResponseEntity<>(data.DataList(placeName),HttpStatus.OK); 
 	}
 
