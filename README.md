@@ -22,12 +22,11 @@ _(For /Data and /DataWithDistanceFrom roots the user must configure the file "lo
 
 ## Configuration
 
-	1 - configure the file "location.txt"
-		e.g. : Bologna,Milan,Rome,Naples,London,NewYork,Amsterdam
-
-	2 - After importing the project into eclipse, launch it as a spring boot application
-
-	3 - Through an application(e.g. Postman), make GET requests to the server(http://localhost:8080)
+ - Configure the file "location.txt (e.g. : Bologna,Milan,Rome,Naples,London,NewYork,Amsterdam)
+	
+ - After importing the project into eclipse, launch it as a spring boot application
+ 
+ - Through an application(e.g. Postman), make GET requests to the server(http://localhost:8080)
 	
 ## Example requests
 
