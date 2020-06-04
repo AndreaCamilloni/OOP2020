@@ -1,1 +1,1 @@
-Bologna,Milano,Genoa,Roma,Palermo(IT),Napoli,London,NewYork,Amsterdam
+Bologna,Milano,Genoa,Torino,Roma,Palermo(IT),Napoli,London,NewYork,Amsterdam
