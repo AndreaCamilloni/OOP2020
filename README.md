@@ -1,4 +1,4 @@
-# Object-oriented programming project[![Twitter](https://it.wikipedia.org/wiki/File:Twitter_bird_logo.png#/media/File:Twitter_bird_logo.png)](https://developer.twitter.com/en/docs/trends/locations-with-trending-topics/api-reference/get-trends-closest)
+# Object-oriented programming project[![Twitter](https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/logo.png)](https://developer.twitter.com/en/docs/trends/locations-with-trending-topics/api-reference/get-trends-closest)
 Step by step, starting with Twitter [API](https://developer.twitter.com/en/docs/trends/locations-with-trending-topics/api-reference/get-trends-closest), I developed according to the project specifications a service based on REST API to show the locations that Twitter has trending topic information for.
 
 ## User Interface
