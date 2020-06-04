@@ -1,7 +1,7 @@
 # Object-oriented programming project
 Step by step, starting with Twitter [API](https://developer.twitter.com/en/docs/trends/locations-with-trending-topics/api-reference/get-trends-closest), I developed according to the project specifications a service based on REST API to show the locations that Twitter has trending topic information for.
 
-##User Interface
+## User Interface
 
 User can make GET requests to show data and statistics. Below there are the possible routes:
 | Method | Root | Description | 
@@ -20,17 +20,19 @@ _(For /Data and /DataWithDistanceFrom roots the user must configure the file "lo
   <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/UseCase.png" width="400" title="UseCase">
 </p>
 
-##Configuration
+## Configuration
 
-	1- configure the file "location.txt"
+	1 - configure the file "location.txt"
 		e.g. : Bologna,Milan,Rome,Naples,London,NewYork,Amsterdam
-	2- After importing the project into eclipse, launch it as a spring boot application
-	3- Through an application(e.g. Postman), make GET requests to the server(http://localhost:8080)
+
+	2 - After importing the project into eclipse, launch it as a spring boot application
+
+	3 - Through an application(e.g. Postman), make GET requests to the server(http://localhost:8080)
 	
-##Example requests
+## Example requests
 
 	
 Inputfile...
 
-##Esempi di rotte e output
+## Esempi di rotte e output
 
