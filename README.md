@@ -134,7 +134,6 @@ It show a list of the locations that Twitter has trending topic information for,
 **GET /Stats** (http://localhost:8080/Stats) It displays the Country that Twitter has trending topic information for, sorted by how many town, for each Country, have trends. The statistic was made by comparing countrycodes.
 
 The count parameter identifies how many town are available for each Country.
-The 
 
 ``` json
 [
@@ -263,7 +262,22 @@ The
   <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/GET%20Stats.png"  title="Stats">
 </p>
 	
-Inputfile...
+## Package
+<p align="center">
+  <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/Package.png"  title="Package">
+</p>
 
-## Esempi di rotte e output
+### Model
+<p align="center">
+  <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/model.png" title="Model">
+</p>
 
+### dbConnection
+
+### Controller
+
+### Util
+
+### Service
+
+### Exception
