@@ -41,14 +41,7 @@ public interface Service {
 	 * @throws BadDataInput
 	 */
 	public abstract List<LocationWithDistance> DataList(String placeName) throws BadDataInput;
-	/**
-	 * 
-	 * @param latData
-	 * @param longData
-	 * @return
-	 */
-	public abstract List<Location> DataList(String latData, String longData);
-	
+
 
 	/**
 	 * TrendsAvailable() return a List of all the Location

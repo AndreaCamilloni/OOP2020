@@ -52,13 +52,6 @@ public class ServiceImplementation implements Service {
 		return db.getTrendsAvailable();
 	}
 
-	/**
-	 *{@inheritDoc}
-	 */
-	@Override
-	public List<Location> DataList(String latData, String longData) {
-		return null;
-	}
 
 	/**
 	 *{@inheritDoc}

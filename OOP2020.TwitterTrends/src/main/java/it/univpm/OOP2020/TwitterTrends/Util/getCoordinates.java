@@ -6,10 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,7 +15,6 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
 import it.univpm.OOP2020.TwitterTrends.exception.BadDataInput;
-import it.univpm.OOP2020.TwitterTrends.exception.IncorrectFileLocation;
 import it.univpm.OOP2020.TwitterTrends.model.Coordinata;
 
 /**
@@ -154,59 +151,4 @@ public class getCoordinates {
 
 	
 	
-	//Questo metodo veniva utilizzato inizialmente per leggere latitudine e longitudine da file di testo
-	/**
-	 * This method is not implemented.
-	 * 
-	 * getCoordinatesFromFile() allows to return list of coordinates entered by the
-	 * user in the sourceFile
-	 * 
-	 * @return
-	 * @throws IOException
-	 * @throws IncorrectFileLocation
-	 */
-	public List<Coordinata> getCoordinatesFromFile() throws IOException, IncorrectFileLocation {
-		BufferedReader reader = null;
-		String line = null;
-		Scanner scanner = null;
-		listCoordinate = new ArrayList<>();
-		int index = 0;
-		try {
-			reader = new BufferedReader(new FileReader(new File(sourceFile))); // il file deve contenere dati lat e long
-
-			while ((line = reader.readLine()) != null) {
-				if (line.split(",").length != 2)
-					throw new IncorrectFileLocation();
-				Coordinata coord = new Coordinata();
-				scanner = new Scanner(line);
-				scanner.useDelimiter(",");
-
-				while (scanner.hasNext()) {
-					String data = scanner.next();
-					if (Double.valueOf(data) < -180 || Double.valueOf(data) > 180)
-						throw new IncorrectFileLocation(data);
-					if (index == 0)
-						coord.setLat(Double.valueOf(data));
-					else if (index == 1)
-						coord.setLon(Double.valueOf(data));
-					else
-						System.out.println("Too many input.Invalid data:" + data);
-					index++;
-				}
-				index = 0;
-				listCoordinate.add(coord);
-			}
-
-		} catch (FileNotFoundException e) {
-			System.out.println("File location.txt non trovato!");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("");
-			e.printStackTrace();
-		} finally {
-			reader.close();
-		}
-		return listCoordinate;
-	}
-
 }

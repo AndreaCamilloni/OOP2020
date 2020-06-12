@@ -93,13 +93,6 @@ public class TrendsDownload {
 				if(obj.get("errors")!=null)
 					throw new BadDataInput(obj.toString());
 				listaAppoggio += obj + ",";
-				//Nota
-				//le seguenti condizioni non possono esser rispettate sempre poichè i nomi dell location
-				//dovrebbero coincidere con quelli assegnati da twitter in inglese
-				//esempio: Naples != Napoli
-				//if(coordinata.getPlaceName().equals(obj.get("name").toString()))listaAppoggio += obj + ",";
-				//else System.out.println("Twitted has not trend for " + coordinata.getPlaceName());
-
 			}
 			listaAppoggio = listaAppoggio.substring(0, listaAppoggio.length() - 1) + "]";
 			JSONArray jsonTrends = (JSONArray) JSONValue.parseWithException(listaAppoggio);
@@ -129,10 +122,6 @@ public class TrendsDownload {
 		String[] tmp;
 		Distance d = new Distance();
 		for (Location loc : trendsClosest) {
-			// loc.getName()+", "+loc.getCountryCode() risolve il problema a richieste con
-			// nomi città in inglese.
-			// ad esempio: passando Naples veniva restituito Naples,Florida => passando il
-			// countrycode si risolve il problema
 			tmp = new getCoordinates().getLatLong(loc.getName() + ", " + loc.getCountryCode()); //
 			LocationWithDistance l = new LocationWithDistance(loc);
 			l.getPlace().setLat(Double.parseDouble(tmp[0]));

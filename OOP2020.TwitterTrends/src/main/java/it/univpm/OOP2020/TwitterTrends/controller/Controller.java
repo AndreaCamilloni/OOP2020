@@ -54,19 +54,7 @@ public class Controller {
 		return new ResponseEntity<>(data.DataList(placeName),HttpStatus.OK); 
 	}
 
-	/**
-	 * @param latTrend
-	 * @param longTrend
-	 * @return
-	 */
-	@GetMapping("/DataFromInput")
-	public  ResponseEntity<Object> getData(@RequestParam(required = true,name = "lat") String latTrend,
-			@RequestParam(required = true,name = "long")  String longTrend){
-		return new ResponseEntity<>(data.DataList(latTrend,longTrend),HttpStatus.OK); 
-
-	}
-
-	
+		
 
 	/**
 	 * This route returns the locations that Twitter has trending topic information for.
