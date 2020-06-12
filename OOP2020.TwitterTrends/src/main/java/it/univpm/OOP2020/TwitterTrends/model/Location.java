@@ -42,11 +42,10 @@ public class Location {
 	 */
 	public Location() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Constructor 
-	 * @param l
+	 * @param l location
 	 */
 	public Location(Location l) {
 		this.name=l.getName();
@@ -59,84 +58,98 @@ public class Location {
 	}
 
 	/**
+	 * Returns the name
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
+	 * Set the name
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
+	 * Returns the placetype
 	 * @return the placeType
 	 */
 	public PlaceType getPlaceType() {
 		return placeType;
 	}
 	/**
+	 * Set the placetype
 	 * @param placeType the placeType to set
 	 */
 	public void setPlaceType(PlaceType placeType) {
 		this.placeType = placeType;
 	}
 	/**
+	 * Returns the url
 	 * @return the url
 	 */
 	public String getUrl() {
 		return url;
 	}
 	/**
+	 * Set the url
 	 * @param url the url to set
 	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 	/**
+	 * Returns the parentid
 	 * @return the parentid
 	 */
 	public Integer getParentid() {
 		return parentid;
 	}
 	/**
+	 * Set the parentif
 	 * @param parentid the parentid to set
 	 */
 	public void setParentid(Integer parentid) {
 		this.parentid = parentid;
 	}
 	/**
+	 * Returns the country name
 	 * @return the country
 	 */
 	public String getCountry() {
 		return country;
 	}
 	/**
+	 * Set the country name
 	 * @param country the country to set
 	 */
 	public void setCountry(String country) {
 		this.country = country;
 	}
 	/**
+	 * Returns the WhereOnEarthID
 	 * @return the woeid
 	 */
 	public Integer getWoeid() {
 		return woeid;
 	}
 	/**
+	 * Set the WhereOnEarthID
 	 * @param woeid the woeid to set
 	 */
 	public void setWoeid(Integer woeid) {
 		this.woeid = woeid;
 	}
 	/**
+	 * Returns the country code
 	 * @return the countryCode
 	 */
 	public String getCountryCode() {
 		return countryCode;
 	}
 	/**
+	 * Set the country code
 	 * @param countryCode the countryCode to set
 	 */
 	public void setCountryCode(String countryCode) {

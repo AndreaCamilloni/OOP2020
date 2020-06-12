@@ -23,15 +23,8 @@ public class PlaceType {
 	private String placeTypeName;
 
 	/**
-	 * 
-	 */
-	public PlaceType() {
-		super();
-	}
-	/**
-	 * 
-	 * @param code
-	 * @param name
+	 * @param code the code of a location
+	 * @param name the name type of a location
 	 */
 	public PlaceType(int code, String name) {
 		// TODO Auto-generated constructor stub
@@ -40,6 +33,7 @@ public class PlaceType {
 	}
 
 	/**
+	 * Returns the code
 	 * @return the placeTypeCode
 	 */
 	@JsonProperty("code")
@@ -48,6 +42,7 @@ public class PlaceType {
 	}
 
 	/**
+	 * Set the code
 	 * @param placeTypeCode the placeTypeCode to set
 	 */
 	@JsonProperty("code")
@@ -56,6 +51,7 @@ public class PlaceType {
 	}
 
 	/**
+	 * Returns the name
 	 * @return the placeTypeName
 	 */
 	@JsonProperty("name")
@@ -64,6 +60,7 @@ public class PlaceType {
 	}
 
 	/**
+	 * Set the name
 	 * @param placeTypeName the placeTypeName to set
 	 */
 	@JsonProperty("name")

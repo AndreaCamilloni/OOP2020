@@ -36,9 +36,9 @@ public interface Service {
 	 * DataList() return a List of all the Location with distance from placeName,
 	 * that Twitter has trending topic information for,
 	 * closest to a specified locations,
-	 * @param placeName
-	 * @return
-	 * @throws BadDataInput
+	 * @param placeName the place name
+	 * @return List of Location with distance from a place
+	 * @throws BadDataInput show an error for wrong input
 	 */
 	public abstract List<LocationWithDistance> DataList(String placeName) throws BadDataInput;
 

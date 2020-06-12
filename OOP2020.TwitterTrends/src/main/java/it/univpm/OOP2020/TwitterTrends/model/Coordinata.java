@@ -29,13 +29,16 @@ public class Coordinata {
 	 */
 	@JsonIgnore
 	private String placeName;
-	
+	/**
+	 * Construct of coordinata
+	 */
 	public Coordinata() {
 
 	}
 	
 	/**
-	 * @param placeName
+	 * Construct of coordinata
+	 * @param placeName name of place
 	 */
 	public Coordinata(String placeName) {
 		super();
@@ -46,7 +49,7 @@ public class Coordinata {
 	/**
 	 * This method return the latitude
 	 * 
-	 * @return the lat
+	 * @return the latitude
 	 */
 	@JsonProperty("latitude")
 	public double getLat() {
@@ -54,9 +57,9 @@ public class Coordinata {
 	}
 
 	/**
-	 * This method is to set di latitude
+	 * This method is to set latitude
 	 * 
-	 * @param lat the lat to set
+	 * @param lat the latitude to set
 	 */
 	@JsonProperty("latitude")
 	public void setLat(double lat) {
@@ -66,7 +69,7 @@ public class Coordinata {
 	/**
 	 * This method return the longitude
 	 * 
-	 * @return the lon
+	 * @return the longitude
 	 */
 	@JsonProperty("longitude")
 	public double getLon() {
@@ -76,7 +79,7 @@ public class Coordinata {
 	/**
 	 * This method is to set the longitude
 	 * 
-	 * @param lon the lon to set
+	 * @param lon the longitude to set
 	 */
 	@JsonProperty("longitude")
 	public void setLon(double lon) {
@@ -84,6 +87,7 @@ public class Coordinata {
 	}
 
 	/**
+	 * Returns the place name
 	 * @return the placeName
 	 */
 	@JsonIgnore
@@ -91,7 +95,7 @@ public class Coordinata {
 		return placeName;
 	}
 
-	/**
+	/** Set the place name
 	 * @param placeName the placeName to set
 	 */
 	@JsonIgnore

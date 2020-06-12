@@ -47,15 +47,11 @@ public class TrendsDownload {
 	 */
 	private static List<Metadata> metadata;
 
-	public TrendsDownload() {
-
-	}
-
 	/**
-	 * This method allows to ad get all the locations that Twitter has trending
+	 * This method allows to get all the locations that Twitter has trending
 	 * topic information for.
 	 * 
-	 * @return trendsAvailable
+	 * @return all the available locations with trends  
 	 */
 	public List<Location> getTrendsAvailable() {
 		url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/trends/available.json";
@@ -66,7 +62,6 @@ public class TrendsDownload {
 			});
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trendsAvailable;
@@ -75,9 +70,9 @@ public class TrendsDownload {
 
 	/**
 	 * This method returns the locations that Twitter has trending topic information
-	 * for, closest to a specified locations, entered by input file such coordinates
+	 * for, closest to a specified locations, entered by input file
 	 * 
-	 * @return trendsClosest
+	 * @return location entered by input with trends 
 	 */
 	public List<Location> getTrendsClosest() {
 		String urlResponse;
@@ -108,11 +103,11 @@ public class TrendsDownload {
 	}
 	/**
 	 * This method returns the locations that Twitter has trending topic information
-	 * for, closest to a specified locations, entered by input file such coordinates;
+	 * for, closest to a specified locations, entered by input file;
 	 * and it calculates the distance of location from the entered placeName 
-	 * @param placeName
-	 * @return
-	 * @throws BadDataInput
+	 * @param placeName name of place 
+	 * @return list of TrendsClosest with distance from a place
+	 * @throws BadDataInput show an error for wrong input
 	 */
 	public List<LocationWithDistance> getTrendsClosestWithDistance(String placeName) throws BadDataInput {
 		List<LocationWithDistance> list = new ArrayList<LocationWithDistance>();
@@ -159,7 +154,7 @@ public class TrendsDownload {
 	 * getStats() returns a sorted list by CountryCode, of TOP rankings countries
 	 * with multiple locations with trends.
 	 * 
-	 * @return
+	 * @return StatsList list of stats about countries with trends
 	 */
 	public List<Stats> getStats() {
 		getTrendsAvailable();

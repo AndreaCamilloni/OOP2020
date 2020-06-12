@@ -36,12 +36,15 @@ public class getCoordinates {
 	/**
 	 * Constructor
 	 * 
-	 * @param file
+	 * @param file input file 
 	 */
 	public getCoordinates(String file) {
 		this.sourceFile = file;
 	}
 
+	/**
+	 * 
+	 */
 	public getCoordinates() {
 		// TODO Auto-generated constructor stub
 	}
@@ -75,9 +78,9 @@ public class getCoordinates {
 	}
 	/**
 	 * This method return an array with latitude and longitude of placeName 
-	 * @param placeName
-	 * @return
-	 * @throws BadDataInput
+	 * @param placeName the name of place
+	 * @return array with latitude and longitude 
+	 * @throws BadDataInput show an error for wrong input
 	 */
 	public String[] getLatLong(String placeName) throws BadDataInput{
 		JSONObject tmp = null;
@@ -112,10 +115,10 @@ public class getCoordinates {
 	 * getCoordinatesRequest() returns a list of Coordinates characterized by
 	 * PlaceName and lat,long parameters
 	 * 
-	 * @return
-	 * @throws MalformedURLException
-	 * @throws IOException
-	 * @throws BadDataInput
+	 * @return list of locations coordinates
+	 * @throws MalformedURLException - wrong url
+	 * @throws IOException input error
+	 * @throws BadDataInput show an error for wrong input
 	 */
 	public List<Coordinata> getCoordinatesRequest() throws MalformedURLException, IOException, BadDataInput {
 		getPlaceFromeFile();

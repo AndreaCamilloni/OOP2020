@@ -42,13 +42,19 @@ public class Controller {
 	 * This route returns the locations that Twitter has trending topic information for, 
 	 * closest to a specified locations, entered by input file.
 	 * @return list of Data
-	 * @throws BadDataInput 
 	 */
 	@GetMapping("/Data")
 	public ResponseEntity<Object> getData(){
 		return new ResponseEntity<>(data.DataList(),HttpStatus.OK); 
 	}
 
+	/**
+	 * This route returns the locations that Twitter has trending topic information for, 
+	 * closest to a specified locations, entered by input file, with distance from entered place.
+	 * @param placeName name of place
+	 * @return list of Data
+	 * @throws BadDataInput show an error for wrong input
+	 */
 	@GetMapping("/DataWithDistanceFrom")
 	public ResponseEntity<Object> getData(@RequestParam(required = false, name= "name", defaultValue = "Ancona") String placeName) throws BadDataInput{
 		return new ResponseEntity<>(data.DataList(placeName),HttpStatus.OK); 

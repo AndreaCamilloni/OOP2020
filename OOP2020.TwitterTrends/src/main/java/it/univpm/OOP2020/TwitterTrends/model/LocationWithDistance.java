@@ -1,36 +1,35 @@
 package it.univpm.OOP2020.TwitterTrends.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+/**
+ * This class describe a single Location returned by a request to the database(Twitter) with distance from a specified place
+ * @author Andrea Camilloni
+ *
+ */
 public class LocationWithDistance extends Location {
 	/**
-	 * 
+	 * Coordinate
 	 */
 	@JsonProperty("Coordinates")
 	private Coordinata place;
 	/**
-	 * 
+	 * Distance from a place
 	 */
 	@JsonProperty("Distance[Km]")
 	private double distance;
 
 	/**
 	 * Constructor 
-	 * @param l
+	 * @param l location
 	 */
 	public LocationWithDistance(Location l) {
 		super(l);
 		place=new Coordinata();
 		place.setPlaceName(l.getName());
 	}
-	/**
-	 * Constructor 
-	 */
-	public LocationWithDistance() {
-		
-	}
 
 	/**
+	 * Returns Coordinate
 	 * @return the place
 	 */
 	@JsonProperty("Coordinates")
@@ -39,6 +38,7 @@ public class LocationWithDistance extends Location {
 	}
 
 	/**
+	 * Set coordinate
 	 * @param place the place to set
 	 */
 	@JsonProperty("Coordinates")
@@ -47,6 +47,7 @@ public class LocationWithDistance extends Location {
 	}
 
 	/**
+	 * Returns the distance from a place
 	 * @return the distance
 	 */
 	@JsonProperty("Distance[Km]")
@@ -55,6 +56,7 @@ public class LocationWithDistance extends Location {
 	}
 
 	/**
+	 * Set the distance
 	 * @param distance the distance to set
 	 */
 	@JsonProperty("Distance[Km]")

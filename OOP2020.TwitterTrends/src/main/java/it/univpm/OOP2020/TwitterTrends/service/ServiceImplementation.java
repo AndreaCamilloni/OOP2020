@@ -55,7 +55,7 @@ public class ServiceImplementation implements Service {
 
 	/**
 	 *{@inheritDoc}
-	 * @throws BadDataInput 
+	 * @throws BadDataInput show an error for wrong input
 	 */
 	@Override
 	public List<LocationWithDistance> DataList(String placeName) throws BadDataInput {

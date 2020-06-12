@@ -16,7 +16,7 @@ public class Distance {
 	
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public Distance() {
 		super();
@@ -24,10 +24,10 @@ public class Distance {
 
 	/**
 	 * Constructor with parameters of location A and B
-	 * @param latA
-	 * @param lonA
-	 * @param latB
-	 * @param lonB
+	 * @param latA latitude of A
+	 * @param lonA longitude of A
+	 * @param latB latitude of B
+	 * @param lonB longitude of B
 	 */
 	public Distance(double latA, double lonA, double latB, double lonB) {
 		super();
@@ -39,10 +39,10 @@ public class Distance {
 
 	/**
 	 * This method return distance[km] of the entered parameters of 2 Location
-	 * @param a0
-	 * @param a1
-	 * @param b0
-	 * @param b1
+	 * @param a0 latitude of A
+	 * @param a1 longitude of A
+	 * @param b0 latitude of B
+	 * @param b1 longitude of B
 	 * @return distance between A and B
 	 */
 	public double distanza(String a0, String a1, String b0, String b1) {

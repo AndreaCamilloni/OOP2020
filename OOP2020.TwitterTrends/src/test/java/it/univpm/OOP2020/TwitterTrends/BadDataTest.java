@@ -28,7 +28,7 @@ public class BadDataTest {
 
 	/**
 	 * Test of IncorrectPlaceName
-	 * @throws BadDataInput
+	 * @throws BadDataInput show an error for wrong input
 	 */
 	@Test
 	public void test1() throws BadDataInput {
@@ -40,6 +40,10 @@ public class BadDataTest {
 		
 		
 	}
+	/**
+	 * Test2 of IncorrectPlaceName
+	 * @throws BadDataInput show an error for wrong input
+	 */
 	@Test
 	public void test2() throws BadDataInput {
 		coord=new getCoordinates();

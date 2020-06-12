@@ -19,7 +19,7 @@ public class urlConnection  {
 
 	/**
 	 * Constructor with url parameter
-	 * @param url
+	 * @param url url for connection
 	 */
 	public urlConnection(String url) {
 		super();
@@ -27,7 +27,7 @@ public class urlConnection  {
 	}
 	/**
 	 * Method that establishes the connection to a url and returns a json string
-	 * @return
+	 * @return JSONstring
 	 */
 	@SuppressWarnings("resource")
 	public String getJSON(){
