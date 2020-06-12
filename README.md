@@ -294,5 +294,9 @@ The count parameter identifies how many town are available for each Country.
 
 ### Exception
 <p align="center">
-  <img src="" title="Exception">
+  <img src="https://github.com/AndreaCamilloni/OOP2020/blob/master/varie/exception.png" title="Exception">
 </p>
+## Software
+	- Eclipse
+	- Postman
+	- VisualParadigm
