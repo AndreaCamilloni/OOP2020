@@ -23,6 +23,13 @@ public class PlaceType {
 	private String placeTypeName;
 
 	/**
+	 * Constructor
+	 */
+	public PlaceType() {
+		super();
+	}
+	
+	/**
 	 * @param code the code of a location
 	 * @param name the name type of a location
 	 */
