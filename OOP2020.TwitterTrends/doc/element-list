@@ -1,0 +1,7 @@
+it.univpm.OOP2020.TwitterTrends
+it.univpm.OOP2020.TwitterTrends.controller
+it.univpm.OOP2020.TwitterTrends.dbConnection
+it.univpm.OOP2020.TwitterTrends.exception
+it.univpm.OOP2020.TwitterTrends.model
+it.univpm.OOP2020.TwitterTrends.service
+it.univpm.OOP2020.TwitterTrends.Util
